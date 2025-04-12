@@ -1,0 +1,5 @@
+# 本地项目根目录执行
+touch .nojekyll
+git add .nojekyll
+git commit -m "禁用 Jekyll 构建"
+git push origin main

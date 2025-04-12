@@ -1,0 +1,37 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]  # 当 main 分支有代码推送时触发部署
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # 使用 GitHub 提供的 Ubuntu 环境
+
+    steps:
+      # 1. 拉取代码
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. 安装 Bun
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest  # 使用最新版 Bun
+
+      # 3. 安装依赖
+      - name: Install dependencies
+        run: bun install
+
+      # 4. 构建项目
+      - name: Build Astro project
+        run: bun run build  # 生成静态文件到 dist/ 目录
+
+      # 5. 部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub 自动生成的令牌
+          publish_dir: ./dist  # 指定构建输出目录（必须与 Astro 的构建目录一致）
+          force_orphan: true  # 强制清空 gh-pages 分支历史
+          keep_files: false   # 不保留旧文件

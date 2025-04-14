@@ -1,10 +1,59 @@
 ---
 import BaseLayout from '../layouts/Layout.astro';
 const pageTitle = "Exercices - WebDev101";
+import '../styles/exercices.css';
+
+
+const sections = [
+{ id: "01_hello_world_ts", title: "01 hello world typescript" },
+  { id: "02_hello_astro_typescript", title: "02 hello astro typescript" },
+  { id: "03_modules", title: "03 modules" },
+  { id: "04_client_server", title: "04 client or server side" },
+  { id: "05_html_css_punto", title: "05 html css punto" },
+  { id: "06_css_flexbox", title: "06 CSS flexbox" },
+  { id: "07_fat_arrow", title: "07 fat arrow" },
+  { id: "08_map_reduce", title: "08 map reduce filter" },
+  { id: "09_objects", title: "09 objects" },
+  { id: "10_json", title: "10 json" },
+  { id: "11_generics", title: "11 generics" },
+  { id: "12_exceptions", title: "12 exceptions" },
+  { id: "13_async_await", title: "13 async await" },
+  { id: "14_fetch", title: "14 fetch" },
+  { id: "15_cors", title: "15 cors" },
+  { id: "16_http_crud", title: "16 http CRUD" },
+  { id: "17_forms", title: "17 forms" },
+  { id: "18_web_components", title: "18 web components" },
+];
 ---
 
+
 <BaseLayout title={pageTitle}>
+  <div class="exercise-layout">
+    <aside class="sidebar">
+      <h2>Exercices</h2>
+      <ul>
+        {sections.map(section => (
+          <li>
+            <a href={`#${section.id}`}>{section.title}</a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+
+    <main class="content">
+      {sections.map(section => (
+        <section id={section.id} class="exercise-section">
+          <h3>{section.title}</h3>
+          <p>这里是 {section.title} 的内容展示区。</p>
+        </section>
+      ))}
+    </main>
+  </div>
+</BaseLayout>
+
+
+
+<!-- <BaseLayout title={pageTitle}>
   <h1>Exercices - WebDev101</h1>
   <p>exxxxxxxererrrrrrrrccccccc</p>
-  <!-- 可继续添加内容 -->
-</BaseLayout>
+</BaseLayout> -->

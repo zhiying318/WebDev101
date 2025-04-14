@@ -1,22 +1,5 @@
----
-// 导航栏组件
-const basePath = import.meta.env.BASE_URL; // 自动获取 base 路径（如 /WebDev101/）
-// import '../styles/navbar.css';
----
-
-<nav>
-  <ul>
-    <li><a href={`${basePath}`}>Home</a></li>
-    <li><a href={`${basePath}exercices/`}>Exercices WebDev101</a></li>
-    <li><a href={`${basePath}miniprojet/`}>Mini Projet - PUNTO</a></li>
-    <li><a href={`${basePath}projetfinal/`}>Projet Final</a></li>
-  </ul>
-</nav>
-
-
-
-<style>
-  nav {
+/* this .css in fact i didn't use */
+nav {
 position: fixed;
 top: 0;
 left: 0;
@@ -61,4 +44,3 @@ flex: 1;
 text-align: center;
 }
 
-</style>

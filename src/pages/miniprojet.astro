@@ -3,9 +3,23 @@ import BaseLayout from '../layouts/Layout.astro';
 const pageTitle = "Mini Projet - PUNTO";
 ---
 
+
 <BaseLayout title={pageTitle}>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    .page-container {
+      padding-top: 60px; /* 顶部导航栏高度，确保内容不会被挡住 */
+    }
+  </style>
+  <div id="game-container" style="max-width: 800px; margin: 0 auto;"></div>
   <script is:inline src="../scripts/punto_app.js"></script>
 </BaseLayout>
+
+<!-- <BaseLayout title={pageTitle}>
+  <script is:inline src="../scripts/punto_app.js"></script>
+</BaseLayout> -->
 
 
 <!-- <!DOCTYPE html>

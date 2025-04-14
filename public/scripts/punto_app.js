@@ -38,23 +38,24 @@ var currentNummber = 0;
 var currentColor = "red";
 var hasPlayed = false;
 var gameFinished = false;
+var gameContainer = document.getElementById('game-container');
 //Ajoute un titre h1 avec le texte "Puissance 4" centré sur la page
 var title = document.createElement("h1");
 title.innerHTML = "Punto";
 title.style.textAlign = "center";
-document.body.appendChild(title);
+gameContainer.appendChild(title);
 var player = document.createElement("h2");
-player.innerHTML = "Joueur : Rouge";
+player.innerHTML = "Player : Rouge";
 player.style.textAlign = "center";
 // mettre le texte en rouge
 player.style.color = "red";
-document.body.appendChild(player);
+gameContainer.appendChild(player);
 var numero = document.createElement("h2");
-numero.innerHTML = "Nombre : 0";
+numero.innerHTML = "Number : 0";
 numero.style.textAlign = "center";
-document.body.appendChild(numero);
+gameContainer.appendChild(numero);
 // fond gris foncé pour le body
-document.body.style.backgroundColor = "darkgrey";
+// gameContainer.style.backgroundColor = "darkgrey";
 //affiche une grille 11x11 avec <table> et <tr> et <td>, chaque case est de forme carré avec une bordure noire
 //fond legerement gris pour les cases autour de la case centrale qui elle reste blanche
 var table = document.createElement("table");
@@ -64,8 +65,8 @@ for (var i = 0; i < 11; i++) {
     //boucle for pour les colonnes
     for (var j = 0; j < 11; j++) {
         var cell = document.createElement("td");
-        cell.style.width = "50px";
-        cell.style.height = "50px";
+        cell.style.width = "40px";
+        cell.style.height = "40px";
         cell.style.border = "1px solid black";
         cell.style.backgroundColor = "lightgrey";
         // centré le texte dans la case
@@ -77,7 +78,7 @@ for (var i = 0; i < 11; i++) {
     }
     table.appendChild(row);
 }
-document.body.appendChild(table);
+gameContainer.appendChild(table);
 // Centrer le tableau sur l'écran
 table.style.margin = "auto";
 function setValue(i, j, value) {
@@ -375,8 +376,8 @@ function game() {
                     }
                     currentNummber = getAndRemoveRandomCard(listList[turn]);
                     currentColor = listColor[turn];
-                    player.innerHTML = "Joueur : " + currentColor;
-                    numero.innerHTML = "Nombre : " + currentNummber;
+                    player.innerHTML = "Player : " + currentColor;
+                    numero.innerHTML = "Number : " + currentNummber;
                     player.style.color = currentColor;
                     console.log("It's " + currentColor + " turn!");
                     console.log("The number is " + currentNummber);
@@ -398,36 +399,31 @@ function game() {
         });
     });
 }
-// supprimer tout ce qu'il y a sur l'écran et afficher "Fin de la partie!" centré sur la page
 function finishScreen() {
-    document.body.innerHTML = "";
+    gameContainer.innerHTML = "";
     var end = document.createElement("h1");
-    end.innerHTML = "Fin de la partie!";
+    end.innerHTML = "Game over! Ctrl+R to restart :)";
     end.style.textAlign = "center";
     var winner = document.createElement("h2");
     if (hasWin("red")) {
-        winner.innerHTML = "Le joueur rouge a gagné!";
+        winner.innerHTML = "Le Player rouge a gagné!";
         winner.style.color = "red";
     }
     if (hasWin("green")) {
-        winner.innerHTML = "Le joueur vert a gagné!";
+        winner.innerHTML = "Le Player vert a gagné!";
         winner.style.color = "green";
     }
     if (hasWin("blue")) {
-        winner.innerHTML = "Le joueur bleu a gagné!";
+        winner.innerHTML = "Le Player bleu a gagné!";
         winner.style.color = "blue";
     }
     if (hasWin("yellow")) {
-        winner.innerHTML = "Le joueur jaune a gagné!";
+        winner.innerHTML = "Le Player jaune a gagné!";
         winner.style.color = "yellow";
     }
     winner.style.textAlign = "center";
-    document.body.appendChild(end);
-    document.body.appendChild(winner);
-    var replay = document.createElement("h2");
-    replay.innerHTML = "Ctrl + R pour rejouer";
-    replay.style.textAlign = "center";
-    document.body.appendChild(replay);
+    gameContainer.appendChild(end);
+    gameContainer.appendChild(winner);
 }
 function waitForPlayerMove() {
     return new Promise(function (resolve) {
@@ -436,7 +432,7 @@ function waitForPlayerMove() {
                 clearInterval(checkInterval);
                 resolve();
             }
-        }, 100); // Vérifie toutes les 100ms si le joueur a joué
+        }, 100); // Vérifie toutes les 100ms si le Player a joué
     });
 }
 function main() {

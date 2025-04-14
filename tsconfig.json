@@ -1,5 +1,9 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "target": "ES2015",  // 或更高版本（如 ES6、ES2020）
+    "lib": ["ES2015", "DOM"]  // 明确包含 ES2015 和浏览器环境类型
+  }
 }

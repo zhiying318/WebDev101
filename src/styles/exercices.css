@@ -75,7 +75,7 @@ color: white;
 .content {
 flex: 1;
 padding: 2rem;
-padding-top: 60px;
+/* padding-top: 60px; */
 }
 
 .exercise-section {

@@ -1,15 +1,32 @@
 ---
 // 导航栏组件
 const basePath = import.meta.env.BASE_URL; // 自动获取 base 路径（如 /WebDev101/）
+const currentPath = Astro.url.pathname;
 // import '../styles/navbar.css';
 ---
 
 <nav>
   <ul>
-    <li><a href={`${basePath}`}>Home</a></li>
-    <li><a href={`${basePath}exercices/`}>Exercices WebDev101</a></li>
-    <li><a href={`${basePath}miniprojet/`}>Mini Projet - PUNTO</a></li>
-    <li><a href={`${basePath}projetfinal/`}>Projet Final</a></li>
+    <li>
+      <a href={`${basePath}`} class={currentPath === basePath ? 'active' : ''}>
+        Home
+      </a>
+    </li>
+    <li>
+      <a href={`${basePath}exercices/`} class={currentPath.startsWith(`${basePath}exercices`) ? 'active' : ''}>
+      Exercices WebDev101
+      </a>
+    </li>
+    <li>
+      <a href={`${basePath}miniprojet/`} class={currentPath.startsWith(`${basePath}miniprojet`) ? 'active' : ''}>
+        Mini Projet - PUNTO
+      </a>
+    </li>
+    <li>
+      <a href={`${basePath}projetfinal/`} class={currentPath.startsWith(`${basePath}projetfinal`) ? 'active' : ''}>
+        Projet final
+      </a>
+    </li>
   </ul>
 </nav>
 
@@ -60,5 +77,11 @@ li {
 flex: 1;
 text-align: center;
 }
+
+a.active {
+    color: rgb(0, 0, 0);
+    background-color: #f9dcb8;
+    font-weight: bold;
+  }
 
 </style>

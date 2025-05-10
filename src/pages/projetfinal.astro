@@ -1,10 +1,27 @@
 ---
 import BaseLayout from '../layouts/Layout.astro';
 const pageTitle = "Projet final";
+import '../styles/projetfinal.css';
 ---
 
 <BaseLayout title={pageTitle}>
-  <h1>Projet final</h1>
-  <p>???????????????</p>
-  <!-- 可继续添加内容 -->
+  <div class="intro">
+    <h1>Projet final</h1>
+    <h2>Comparer les populations et surfaces des pays européens</h2>
+    <p>
+      Toutes les données proviennent de l'API :
+      <a href="https://restcountries.com/" target="_blank" rel="noopener noreferrer">
+        restcountries
+      </a>
+    </p>
+  </div>
+
+  <div id="country-list"></div>
+  <!-- adding chart.js as global variable -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script type="module">
+    import { showSelectedCountries } from '../scripts/api.js';
+    showSelectedCountries();
+  </script>
 </BaseLayout>

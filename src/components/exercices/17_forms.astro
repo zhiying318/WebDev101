@@ -1,0 +1,118 @@
+---
+const serverUrl = "https://openaq-vercel.vercel.app"; 
+---
+
+<section id="17_forms">
+  <h2>17. Forms + API OpenAQ</h2>
+
+  <p>
+    Cet exercice vous montre comment interagir avec l'API <a href="https://openaq.org" target="_blank">OpenAQ</a> via un formulaire. <br />
+    Étant donné que l'API OpenAQ ne permet pas les requêtes directes côté navigateur (CORS), l'application utilise un <strong>serveur proxy</strong> déployé sur Vercel.
+  </p>
+
+  <ul>
+    <li>L'utilisateur entre un pays (ex: FR, US, CN…)</li>
+    <li>On récupère les <em>locations</em> disponibles via <code>/api/locations</code></li>
+    <li>On sélectionne un site de mesure → les mesures s'affichent</li>
+    <li>Données rafraîchies toutes les 10 secondes automatiquement</li>
+    <li>Si le pays n'est pas trouvé → message d'erreur</li>
+  </ul>
+
+  <details>
+    <summary>Afficher le code</summary>
+    <pre><code  class="language-ts" is:raw>
+        import { serve } from "bun";
+
+        const OPENAQ_API_KEY = "YOUR_API_KEY"; // 替换为你的API密钥
+        const PORT = 3000;
+        async function fetchOpenAQData(endpoint: string, params: Record<string, string>) {
+            const url = new URL(`https://api.openaq.org/v3/${endpoint}`);
+            Object.entries(params).forEach(([key, value]) => 
+                url.searchParams.append(key, value));
+            
+            const response = await fetch(url, {
+                headers: {
+                    "X-API-Key": OPENAQ_API_KEY,
+                }
+            });
+        
+            if (!response.ok) throw new Error(await response.text());
+            return response.json();
+        }
+
+        serve({
+            port: PORT,
+            async fetch(req) {
+                const url = new URL(req.url);
+                
+                // 返回前端页面
+                if (url.pathname === "/") {
+                    return new Response(HTML, {
+                        headers: { "Content-Type": "text/html" }
+                    });
+                }
+
+                if (url.pathname === "/locations") {
+                    try {
+                        const country = url.searchParams.get("country");
+                        const data = await fetchOpenAQData("locations", {
+                            country,
+                            limit: "100"
+                        });
+                        
+                        if (data.results.length === 0) {
+                            return new Response("Country not found", { status: 404 });
+                        }
+                        
+                        return Response.json(data.results.map(location => ({
+                            id: location.id,
+                            name: location.name
+                        })));
+                    } catch (error) {
+                        return new Response(error.message, { status: 500 });
+                    }
+                }
+
+                if (url.pathname === "/measurements") {
+                    try {
+                        const locationId = url.searchParams.get("locationId");
+                        const data = await fetchOpenAQData("measurements", {
+                            location_id: locationId,
+                            limit: "10",
+                            sort: "desc"
+                        });
+                        
+                        return Response.json(data.results);
+                    } catch (error) {
+                        return new Response(error.message, { status: 500 });
+                    }
+                }
+        
+                return new Response("Not found", { status: 404 });
+            }
+        });
+        
+        console.log(`Server running at http://localhost:${PORT}`);
+    </code></pre>
+  </details>
+
+  <button id="launch-app" style="margin-top: 1rem;">Run</button>
+
+  <div id="app-container" style="margin-top: 20px;"></div>
+
+  <script is:inline>
+    document.getElementById("launch-app").addEventListener("click", () => {
+      const container = document.getElementById("app-container");
+      container.innerHTML = ""; // Reset
+
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://openaq-vercel.vercel.app";
+      iframe.width = "100%";
+      iframe.height = "700";
+      iframe.style.border = "1px solid #ccc";
+      iframe.style.borderRadius = "8px";
+      iframe.style.boxShadow = "0 0 10px rgba(0,0,0,0.1)";
+      container.appendChild(iframe);
+    });
+  </script>
+</section>

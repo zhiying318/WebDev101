@@ -6,6 +6,8 @@ const base = import.meta.env.BASE_URL;
   <h2>16 - HTTP CRUD avec relations entre entités</h2>
   <p>Ce script gère la suppression, création, mise à jour de restaurants et la mise à jour des catégories et relations associées.</p>
 
+  <details>
+  <summary>Afficher le code</summary>
   <pre><code class="language-ts" is:raw>
 interface AlloResto {
   restaurants: Restaurant[];
@@ -115,7 +117,6 @@ abstract class HttpClient<T> {
       }
     }
   
-    // 删除关联的restaurantCategories
     const deleteRestaurantCategoriesClient = new DeleteClient(`${restaurantCategoriesUrl}?restaurantId=${restaurantId}`);
     await deleteRestaurantCategoriesClient.execute();
   }
@@ -219,11 +220,12 @@ async function main() {
   });
 }
   </code></pre>
+</details>
 
-  <button id="btn16">Run</button>
+  <!-- <button id="btn16">Run</button> -->
   <div id="res16" class="result-box"></div>
 
-  <script type="module" is:inline>
+  <!-- <script type="module" is:inline>
     import("/WebDev101/exercices/16_http_crud/app.js").then(({ main }) => {
       const resBox = document.getElementById('res16');
       document.getElementById("btn16")?.addEventListener("click", async () => {
@@ -245,5 +247,5 @@ async function main() {
         }
       });
     });
-  </script>
+  </script> -->
 </section>

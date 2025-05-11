@@ -1,0 +1,189 @@
+<section id="18_web_components">
+    <h2>18. Web Components personnalisés</h2>
+  
+    <p>
+      Cet exercice montre comment créer des <strong>éléments HTML personnalisés</strong> en utilisant l’API Web Components.
+      Deux éléments ont été définis :
+    </p>
+  
+    <ul>
+      <li><code>&lt;date-time&gt;</code> : affiche la date et l’heure actuelles, mise à jour chaque seconde</li>
+      <li>
+        <code>&lt;greet-custom&gt;</code> : affiche une salutation contextuelle (Bonjour, Bon après-midi, Bonsoir)
+        selon l’heure de la journée. Il accepte un attribut <code>name</code> pour personnaliser le message.
+      </li>
+    </ul>
+  
+  
+    <details>
+      <summary>Afficher le code de <code>&lt;greet-custom&gt;</code></summary>
+      <pre><code  class="language-ts" is:raw>
+class HelloWorld extends HTMLElement {
+    // le navigateur appelle cette méthode à chaque fois que l'élément est ajouté
+    // au DOM (c'est à dire inséré dans la page)
+    // vous pouvez aussi appeler cette méthode manuellement
+    // pour mettre à jour l'élément
+    connectedCallback() {
+        this.textContent = "Hello World!";
+    }
+    }
+    
+    // ici on enregistre notre élément <hello-world> dans le navigateur
+    // pour qu'il soit reconnu et utilisable dans le HTML
+    // le nom de la balise est le premier paramètre
+    // le deuxième paramètre est la classe qui définit le comportement de l'élément
+    customElements.define("hello-world", HelloWorld);
+    
+    class HelloName extends HTMLElement {
+    name: string = "Remi";
+    constructor() {
+        super();
+    }
+    
+    // le navigateur appelle cette méthode pour savoir
+    // quels attributs observer (c'est à dire surveiller les changements de valeur)
+    // et pour ensuite appeler attributeChangedCallback
+    static get observedAttributes(): string[] {
+        return ["name"];
+    }
+    
+    // le navigateur appelle cette méthode à chaque fois qu'un attribut
+    // observé change de valeur (voir observedAttributes)
+    // puis il appelle connectedCallback pour mettre à jour l'élément
+    attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+        if (name === "name") {
+        console.log(`Attribute ${name} changed from ${oldValue} to ${newValue}`);
+        this.name = newValue;
+        }
+    }
+    
+    // cette méthode est appelée à chaque fois que l'attribut name change
+    // (voir ci-dessus)
+    connectedCallback() {
+        console.log(`Hello ${this.name}!`);
+        this.textContent = `Hello ${this.name}!`;
+    }
+    }
+    
+    customElements.define("hello-name", HelloName);
+    
+    //ajouter un élément <hello-name> programmatiquement
+    const helloName : HelloName = document.createElement("hello-name") as HelloName;
+    helloName.setAttribute("name", "Monsieur DEBUT");
+    document.body.appendChild(helloName);
+
+            
+// ==================== date and time ====================
+class DateTime extends HTMLElement {
+    private timerId?: number;
+
+    connectedCallback() {
+    this.updateTime();
+
+    this.timerId = setInterval(() => this.updateTime(), 1000);
+    }
+
+    disconnectedCallback() {
+    if (this.timerId) {
+        clearInterval(this.timerId);
+    }
+    }
+
+    private updateTime() {
+    this.textContent = new Date().toLocaleString();
+    }
+}
+
+customElements.define('date-time', DateTime);
+
+// ==================== Active Greeting ====================
+class GreetCustom extends HTMLElement {
+
+    static get observedAttributes() {
+    return ['name'];
+    }
+
+    private name: string = '';
+
+    attributeChangedCallback(name: string, oldVal: string, newVal: string) {
+    if (name === 'name') {
+        this.name = newVal;
+        this.updateGreeting();
+    }
+    }
+
+    connectedCallback() {
+    this.updateGreeting();
+    }
+
+    private updateGreeting() {
+    const hour = new Date().getHours();
+    let greeting = 'Bonsoir'; // default bonsoir
+
+    if (hour >= 5 && hour < 12) {
+        greeting = 'Bonjour';
+    } else if (hour >= 12 && hour < 18) {
+        greeting = 'Bon après-midi';
+    }
+
+    this.innerHTML = `
+        <div >
+        ${greeting}${this.name ? `, ${this.name}` : ''}!
+        </div>
+    `;
+    }
+}
+
+customElements.define('greet-custom', GreetCustom);
+
+window.onload = () => {
+    const style = document.createElement('style');
+    style.textContent = `
+    hello-world, hello-name, date-time, greet-custom {
+        display: block;
+        margin-bottom: 15px;
+    }
+    `;
+    document.head.appendChild(style);
+
+    const thirdHelloName: HelloName = document.getElementById("third") as HelloName;
+    if (thirdHelloName) {
+    thirdHelloName.setAttribute("name", "John");
+    thirdHelloName.connectedCallback();
+    } else {
+    console.error("Element not found");
+    }
+
+    const container = document.createElement('div');
+
+    const components = [
+    document.createElement('date-time'),
+    helloName, // 原有的helloName
+    document.createElement('greet-custom')
+    ];
+
+    components[2].setAttribute('name', '');
+
+    components.forEach(el => {
+    container.appendChild(el);
+    container.appendChild(document.createElement('br'));
+    });
+
+    document.body.appendChild(container);
+};
+      </code></pre>
+    </details>
+  
+
+    <button id="btnRun18">Run</button>
+
+  <div id="res18"></div>
+
+  <script type="module" is:inline>
+    import("/WebDev101/exercices/18_web_components/app.js").then(({ runSession18 }) => {
+      document.getElementById("btnRun18")?.addEventListener("click", () => {
+        runSession18("res18");
+      });
+    });
+  </script>
+  </section>

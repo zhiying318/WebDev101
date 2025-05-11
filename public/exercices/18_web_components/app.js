@@ -1,0 +1,102 @@
+// ==================== <hello-world> ====================
+class HelloWorld extends HTMLElement {
+    connectedCallback() {
+        this.textContent = "Hello World!";
+    }
+}
+customElements.define("hello-world", HelloWorld);
+// ==================== <hello-name> ====================
+class HelloName extends HTMLElement {
+    constructor() {
+        super(...arguments);
+        this.name = "Remi";
+    }
+    static get observedAttributes() {
+        return ["name"];
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === "name") {
+            this.name = newValue;
+        }
+    }
+    connectedCallback() {
+        this.textContent = `Hello ${this.name}!`;
+    }
+}
+customElements.define("hello-name", HelloName);
+// ==================== <date-time> ====================
+class DateTime extends HTMLElement {
+    connectedCallback() {
+        this.updateTime();
+        this.timerId = setInterval(() => this.updateTime(), 1000);
+    }
+    disconnectedCallback() {
+        if (this.timerId)
+            clearInterval(this.timerId);
+    }
+    updateTime() {
+        this.textContent = new Date().toLocaleString();
+    }
+}
+customElements.define("date-time", DateTime);
+// ==================== <greet-custom> ====================
+class GreetCustom extends HTMLElement {
+    constructor() {
+        super(...arguments);
+        this.name = "";
+    }
+    static get observedAttributes() {
+        return ["name"];
+    }
+    attributeChangedCallback(name, oldVal, newVal) {
+        if (name === "name") {
+            this.name = newVal;
+            this.updateGreeting();
+        }
+    }
+    connectedCallback() {
+        this.updateGreeting();
+    }
+    updateGreeting() {
+        const hour = new Date().getHours();
+        let greeting = "Bonsoir";
+        if (hour >= 5 && hour < 12)
+            greeting = "Bonjour";
+        else if (hour >= 12 && hour < 18)
+            greeting = "Bon après-midi";
+        this.innerHTML = `${greeting}${this.name ? `, ${this.name}` : ""}!`;
+    }
+}
+customElements.define("greet-custom", GreetCustom);
+// ==================== Fonction appelée au clic ====================
+export function runSession18(containerId) {
+    const style = document.createElement("style");
+    style.textContent = `
+      hello-world, hello-name, date-time, greet-custom {
+        display: block;
+        margin-bottom: 15px;
+      }
+    `;
+    document.head.appendChild(style);
+    const container = document.getElementById(containerId);
+    if (!container) {
+        console.error("Container non trouvé :", containerId);
+        return;
+    }
+    container.innerHTML = "";
+    const helloName = document.createElement("hello-name");
+    helloName.setAttribute("name", "Monsieur DEBUT");
+    const thirdHelloName = document.createElement("hello-name");
+    thirdHelloName.setAttribute("name", "John");
+    thirdHelloName.id = "third";
+    const dateTime = document.createElement("date-time");
+    const greet = document.createElement("greet-custom");
+    greet.setAttribute("name", "Alice");
+    container.appendChild(helloName);
+    container.appendChild(document.createElement("br"));
+    container.appendChild(thirdHelloName);
+    container.appendChild(document.createElement("br"));
+    container.appendChild(dateTime);
+    container.appendChild(document.createElement("br"));
+    container.appendChild(greet);
+}

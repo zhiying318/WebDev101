@@ -1,0 +1,63 @@
+<section id="09_objects" class="exercise-section">
+    <h2>09 Classes et Interfaces - Véhicules</h2>
+  
+    <p>
+      Une interface <code>IVehicle</code> définit deux méthodes. Une classe abstraite <code>Vehicle</code> fournit
+      une implémentation de <code>drive()</code>. Les classes <code>Car</code> et <code>Bicycle</code> définissent leur propre
+      méthode <code>honk()</code>. Le programme crée plusieurs instances et les parcourt.
+    </p>
+  
+    <pre><code class="language-ts" is:raw>
+  // Ici j'ai mis tout les messages apparaîts dans console affichés dessous le button
+
+  interface IVehicle {
+    drive(): void;
+    honk(): void;
+  }
+  
+  abstract class Vehicle implements IVehicle {
+    constructor(protected speed: number) {}
+    abstract honk(): void;
+    drive(): void {
+      console.log(\`Driving at \${this.speed} km/h\`);
+    }
+  }
+  
+  class Car extends Vehicle {
+    honk(): void {
+      console.log("Beep beep!");
+    }
+  }
+  
+  class Bicycle extends Vehicle {
+    honk(): void {
+      console.log("Ring Ring");
+    }
+  }
+
+  const vehicles: IVehicle[] = [
+    new Car(120),
+    new Car(150),
+    new Bicycle(20),
+    new Bicycle(25),
+    new Bicycle(30)
+ ];
+
+  for (const vehicle of vehicles) {
+    vehicle.drive();
+    vehicle.honk();
+  }
+    </code></pre>
+  
+    <button id="btn09">Run</button>
+    <div id="res09" class="result-box"></div>
+  
+    <script type="module" is:inline>
+      import("/WebDev101/exercices/09_objects/app.js").then(({ runVehicleExercise }) => {
+        document.getElementById("btn09")?.addEventListener("click", () => {
+          runVehicleExercise("res09");
+        });
+      });
+    </script>
+  </section>
+  

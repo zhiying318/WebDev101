@@ -1,0 +1,27 @@
+---
+// 服务器端运行，避免 CORS 问题
+const res = await fetch("https://api.deezer.com/playlist/11846226041");
+const playlist = await res.json();
+const trackRes = await fetch(playlist.tracklist);
+const trackData = await trackRes.json();
+---
+
+<section id="15_cors" class="exercise-section">
+  <h2>15 CORS - Deezer Playlist</h2>
+  <p>Affichage des morceaux de la playlist Top 100 France 2023 (depuis l'API de Deezer)</p>
+
+  <ul>
+    {trackData.data.map((track, index) => (
+      <li>
+        <h3>{index + 1}. {track.title}</h3>
+        <p>{track.artist.name}</p>
+        <p>{track.album.title}</p>
+        <img src={track.album.cover_small} alt="cover" />
+        <audio controls preload="none">
+          <source src={track.preview} type="audio/mpeg" />
+          Votre navigateur ne supporte pas l'audio.
+        </audio>
+      </li>
+    ))}
+  </ul>
+</section>

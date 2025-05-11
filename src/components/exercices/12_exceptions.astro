@@ -1,0 +1,52 @@
+<section id="12_exceptions" class="exercise-section">
+    <h2>12 Exceptions - Gestion d'erreurs</h2>
+  
+    <p>Une classe <code>Rectangle</code> vérifie les dimensions avant de calculer la surface. Les erreurs sont capturées via un bloc <code>try-catch-finally</code>.</p>
+  
+    <pre><code class="language-ts" is:raw>
+  class Rectangle {
+    constructor(private longueur: number, private largeur: number) {}
+  
+    calculerSurface(): number {
+      if (this.longueur <= 0 || this.largeur <= 0) {
+        throw new Error("Dimensions invalides !");
+      }
+      return this.longueur * this.largeur;
+    }
+  
+    essayerCalculSurface(): void {
+      try {
+        const surface = this.calculerSurface();
+        console.log(surface);
+      } catch (e) {
+        console.error(e.message);
+      } finally {
+        console.log("Calcul terminé");
+      }
+    }
+  }
+
+  // test
+  const rectangles = [
+      new Rectangle(5, 10),   
+      new Rectangle(0, 8),     
+      new Rectangle(4, -3),    
+      new Rectangle(7, 12)     
+  ];
+  
+  console.log("=== Test des rectangles ===");
+  rectangles.forEach(rect => rect.essayerCalculSurface());
+    </code></pre>
+  
+    <button id="btn12">Run</button>
+    <div id="res12"></div>
+  
+    <script type="module" is:inline>
+      import("/WebDev101/exercices/12_exceptions/app.js").then(({ runRectangleTest }) => {
+        document.getElementById("btn12")?.addEventListener("click", () => {
+          runRectangleTest("res12");
+        });
+      });
+    </script>
+  </section>
+  

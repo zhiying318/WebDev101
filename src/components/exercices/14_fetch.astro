@@ -1,0 +1,153 @@
+<section id="14_fetch" class="exercise-section">
+    <h2>14 fetch</h2>
+  
+    <h3>Exercice 1</h3>
+    <p>Ce script utilise l'API de l'USGS pour afficher les tremblements de terre de magnitude ≥ 4 depuis hier.</p>
+    <pre><code class="language-ts" is:raw>  
+interface Earthquake {
+properties: {
+    time: number;
+    place: string;
+    mag: number;
+};
+}
+
+class EarthquakeService {
+private async getEarthquakesFromUSGS(): Promise<Earthquake[]> {
+    const response = await fetch(
+    "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=yesterday&endtime=today&minmagnitude=4"
+    );
+    const earthquakejson = await response.json();
+    return earthquakejson.features;
+}
+
+async displayEarthquakes() {
+    try {
+    const earthquakes = await this.getEarthquakesFromUSGS();
+
+    // ======= add line 1 =======
+    const ul: HTMLUListElement = document.createElement("ul");
+    
+
+    earthquakes.forEach((earthquake) => {
+        const date: Date = new Date(earthquake.properties.time);
+        const options: Intl.DateTimeFormatOptions = {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Europe/Paris",
+        };
+        const dateString: string = date.toLocaleDateString("fr-FR", options);
+        const finalString: string = `${dateString} - ${earthquake.properties.mag} - ${earthquake.properties.place}`;
+        console.log(finalString);
+
+        // ======= add line 2-4 =======
+        const li: HTMLLIElement = document.createElement("li");
+        li.textContent = finalString;
+        ul.appendChild(li);
+        
+    });
+
+    // ======= add line 5 =======
+    // document.body.appendChild(ul);
+    document.getElementById("ex1")?.appendChild(ul);
+    
+
+    } catch (error) {
+    console.error('Une erreur est survenue lors de la récupération des données de tremblement de terre :', error);
+    }
+}
+}
+
+const earthquakeService = new EarthquakeService();
+earthquakeService.displayEarthquakes();    
+    </code></pre>
+  
+    <h3>Exercice 2 : Recherche d'adresse en France</h3>
+    <p>Recherche des adresses via l'API adresse.data.gouv.fr (exemple : <code>8 bd du port</code>)</p>
+
+    <pre><code class="language-ts" is:raw> 
+// app2.ts
+
+interface Address {
+    city: string;
+    postcode: string;
+    street: string;
+    housenumber: string;
+    context: string;
+    lat: number;
+    lon: number;
+    }
+    
+    class AddressService {
+    async searchAddress(query: string, limit: number): Promise<Address[]> {
+        const encodedQuery = encodeURIComponent(query);
+        const url = `https://api-adresse.data.gouv.fr/search/?q=${encodedQuery}&limit=${limit}`;
+    
+        try {
+        const response = await fetch(url);
+        const data = await response.json();
+    
+        const addresses: Address[] = data.features.map((feature: any) => {
+            const props = feature.properties;
+            return {
+            city: props.city,
+            postcode: props.postcode,
+            street: props.street || '', 
+            housenumber: props.housenumber || '',
+            context: props.context,
+            lat: feature.geometry.coordinates[1],
+            lon: feature.geometry.coordinates[0],
+            };
+        });
+    
+        return addresses;
+        } catch (error) {
+        console.error("Erreur lors de la recherche d'adresse :", error);
+        return [];
+        }
+    }
+    }
+    
+
+    
+    const addressService = new AddressService();
+    
+    addressService.searchAddress("8 bd du port", 5).then((results) => {
+    const ul = document.createElement("ul");
+    
+    results.forEach((address) => {
+        const li = document.createElement("li");
+        li.textContent = `${address.city}, ${address.postcode}, ${address.street} ${address.housenumber} (${address.context}) [${address.lat}, ${address.lon}]`;
+        ul.appendChild(li);
+    });
+    
+    document.getElementById("ex2")?.appendChild(ul);
+    });
+    </code></pre>
+
+
+    <button id="btn14_2">Run</button>
+    <div id="ex2"></div>
+    
+    <script type="module" is:inline>
+  
+      import("/WebDev101/exercices/14_fetch/app.js").then(({ addressService }) => {
+        document.getElementById("btn14_2")?.addEventListener("click", () => {
+          document.getElementById("ex2").innerHTML = "";
+          addressService.searchAddress("8 bd du port", 5).then((results) => {
+            const ul = document.createElement("ul");
+            results.forEach((address) => {
+              const li = document.createElement("li");
+              li.textContent = `${address.city}, ${address.postcode}, ${address.street} ${address.housenumber} (${address.context}) [${address.lat}, ${address.lon}]`;
+              ul.appendChild(li);
+            });
+            document.getElementById("ex2")?.appendChild(ul);
+          });
+        });
+      });
+    </script>
+  </section>
+  

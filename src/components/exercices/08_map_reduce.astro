@@ -1,0 +1,44 @@
+<section id="08_map_reduce" class="exercise-section">
+    <h2>08 Map / Filter / Reduce / Find</h2>
+  
+    <p>Nous appliquons les méthodes <code>map</code>, <code>filter</code>, <code>reduce</code> et <code>find</code> à un tableau de fruits :</p>
+  
+    <pre><code class="language-ts" is:raw>
+  const fruits = ["pomme", "kiwi", "banane", "cerise", "orange", "poire", "fraise", "prune", "ananas", "pêche"];
+  
+  const fruitsUpperCase = fruits.map(fruit => fruit.toUpperCase());
+  // ["POMME", "KIWI", "BANANE", ...]
+  
+  const fruitsStartingWithP = fruits.filter(fruit => fruit.startsWith('p'));
+  // ["pomme", "poire", "prune", "pêche"]
+  
+  const fruitsJoined = fruits.reduce((acc, fruit) => acc + (acc ? ', ' : '') + fruit, '');
+  // "pomme, kiwi, banane, ..."
+  
+  const firstFruitWithMoreThanFiveLetters = fruits.find(fruit => fruit.length > 5);
+  // "banane"
+    </code></pre>
+  
+    <button id="btn08">Run</button>
+  
+    <div id="res08"></div>
+  
+    <script type="module" is:inline>
+      import("/WebDev101/exercices/08_map_reduce/app.js").then(mod => {
+        document.getElementById("btn08")?.addEventListener("click", () => {
+          const el = document.getElementById("res08");
+          if (!el) return;
+  
+          const { fruitsUpperCase, fruitsStartingWithP, fruitsJoined, firstFruitWithMoreThanFiveLetters } = mod;
+  
+          el.innerHTML = `
+            <p><strong>Fruits en majuscules :</strong> ${fruitsUpperCase.join(', ')}</p>
+            <p><strong>Fruits commençant par 'p' :</strong> ${fruitsStartingWithP.join(', ')}</p>
+            <p><strong>Chaîne concaténée :</strong> ${fruitsJoined}</p>
+            <p><strong>Premier fruit &gt; 5 lettres :</strong> ${firstFruitWithMoreThanFiveLetters}</p>
+          `;
+        });
+      });
+    </script>
+  </section>
+  

@@ -1,0 +1,139 @@
+<section id="13_async_await" class="exercise-section">
+    <h2>13 async/await et Promises</h2>
+  
+    <p>Trois exercices sur les Promesses et la syntaxe async/await :</p>
+    <ul>
+      <li><strong>Q1</strong> : somme de deux nombres avec délai.</li>
+      <li><strong>Q2</strong> : vérification d'un utilisateur avec then/catch.</li>
+      <li><strong>Q3</strong> : version orientée objet avec des classes.</li>
+    </ul>
+    
+    <pre><code class="language-ts" is:raw>
+// Question 1
+function calculateSumAsync(a: number, b: number): Promise<number> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(a + b);
+        }, 3000);
+    });
+}
+
+async function printSum(a: number, b: number): Promise<void> {
+    console.log("Calcul en cours...");
+    const sum = await calculateSumAsync(a, b);
+    console.log(`Résultat: ${sum}`);
+}
+
+console.log("=== Test Question 1 ===");
+printSum(5, 7);
+
+
+
+
+// Question 2
+function verifyUser(username: string, password: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+        const validUsername = "admin";
+        const validPassword = "1234";
+        
+        if (username === validUsername && password === validPassword) {
+            resolve();
+        } else {
+            reject("Nom d'utilisateur ou mot de passe incorrect");
+        }
+    });
+}
+
+// 2. use then/catch
+console.log("=== Test Question 2 ===");
+verifyUser("admin", "1234")
+    .then(() => console.log("Bienvenue, admin!"))
+    .catch(err => console.error("Erreur:", err));
+
+verifyUser("user", "psjciwqw")
+    .then(() => console.log("Bienvenue!"))
+    .catch(err => console.error("Erreur:", err)); 
+
+
+
+
+// Question 3 - Q1 (Version with Class)
+class Calculator {
+    async calculateSumAsync(a: number, b: number): Promise<number> {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(a + b);
+            }, 3000);
+        });
+    }
+
+    async printSum(a: number, b: number): Promise<void> {
+        console.log("Calcul en cours...");
+        const sum = await this.calculateSumAsync(a, b);
+        console.log(`Résultat: ${sum}`);
+    }
+}
+
+// TEST
+console.log("=== Test Question 3 - Q1 ===");
+const calc = new Calculator();
+calc.printSum(10, 15); 
+
+
+// Question 3 - Q2 (Version with Class)
+class Users {
+    private validUsername = "admin";
+    private validPassword = "1234";
+
+    verifyUser(username: string, password: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            if (username === this.validUsername && password === this.validPassword) {
+                resolve();
+            } else {
+                reject("Nom d'utilisateur ou mot de passe incorrect");
+            }
+        });
+    }
+
+    login(username: string, password: string): void {
+        this.verifyUser(username, password)
+            .then(() => console.log(`Bienvenue, ${username}!`))
+            .catch(err => console.error("Erreur:", err));
+    }
+}
+
+// TEST
+console.log("=== Test Question 3 - Q2 ===");
+const userSystem = new Users();
+userSystem.login("admin", "1234"); 
+userSystem.login("guest", "030dwqxsa"); 
+
+    </code></pre>
+
+
+    <button id="btnQ1">Run Question 1</button>
+    <button id="btnQ2">Run Question 2</button>
+    <button id="btnQ3">Run Question 3</button>
+  
+    <div id="res13"></div>
+    
+    <script type="module" is:inline>
+      import("/WebDev101/exercices/13_async_await/app.js").then(({ runQ1, runQ2, runQ3 }) => {
+        document.getElementById("btnQ1")?.addEventListener("click", () => {
+          document.getElementById("res13").innerHTML = "";
+          runQ1("res13");
+        });
+  
+        document.getElementById("btnQ2")?.addEventListener("click", () => {
+          document.getElementById("res13").innerHTML = "";
+          runQ2("res13");
+        });
+  
+        document.getElementById("btnQ3")?.addEventListener("click", () => {
+          document.getElementById("res13").innerHTML = "";
+          runQ3("res13");
+        });
+      });
+    </script>
+  </section>
+  

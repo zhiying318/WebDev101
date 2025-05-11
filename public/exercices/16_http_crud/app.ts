@@ -1,37 +1,30 @@
----
-const base = import.meta.env.BASE_URL;
----
-
-<section id="16_http_crud" class="exercise-section">
-  <h2>16 - HTTP CRUD avec relations entre entités</h2>
-  <p>Ce script gère la suppression, création, mise à jour de restaurants et la mise à jour des catégories et relations associées.</p>
-
-  <pre><code class="language-ts" is:raw>
 interface AlloResto {
-  restaurants: Restaurant[];
-  categories: Category[];
-  restaurantCategories: RestaurantCategory[];
-}
-
-interface Category {
-  id?: string;
-  name?: string;
-  restaurantIds?: string[];
-}
-
-interface RestaurantCategory {
-  restaurantId?: string;
-  categoryId?: string;
-}
-
-interface Restaurant {
-  id?: string;
-  name?: string;
-  description?: string;
-  categoryIds?: string[];
-}
-
-abstract class HttpClient<T> {
+    restaurants: Restaurant[];
+    categories: Category[];
+    restaurantCategories: RestaurantCategory[];
+  }
+  
+  interface Category {
+    id?: string;
+    name?: string;
+    restaurantIds?: string[];
+  }
+  
+  interface RestaurantCategory {
+    restaurantId?: string;
+    categoryId?: string;
+  }
+  
+  interface Restaurant {
+    id?: string;
+    name?: string;
+    description?: string;
+    categoryIds?: string[];
+  }
+  
+  //interfaces créées avec le site https://app.quicktype.io/
+  
+  abstract class HttpClient<T> {
     protected url: string;
     protected options: RequestInit;
   
@@ -87,10 +80,15 @@ abstract class HttpClient<T> {
       this.options.method = "DELETE";
     }
   }
+
+
+
+
   const url = "http://localhost:3000/restaurants";
   const categoriesUrl = "http://localhost:3000/categories";
   const restaurantCategoriesUrl = "http://localhost:3000/restaurantCategories";
-
+  
+  // 辅助函数处理删除餐厅及相关联的数据
   async function deleteRestaurantAndUpdateRelations(restaurantId: string): Promise<void> {
     const getClient = new ReadClient<Restaurant>(`${url}/${restaurantId}`);
     const restaurant = await getClient.execute();
@@ -101,7 +99,8 @@ abstract class HttpClient<T> {
     if (!deletedRestaurant) return;
   
     console.log(`DELETE id : ${deletedRestaurant.id} name : ${deletedRestaurant.name} `);
-
+  
+    // 更新关联的分类
     const categoryIds = restaurant.categoryIds || [];
     for (const categoryId of categoryIds) {
       const getCategoryClient = new ReadClient<Category>(`${categoriesUrl}/${categoryId}`);
@@ -119,7 +118,8 @@ abstract class HttpClient<T> {
     const deleteRestaurantCategoriesClient = new DeleteClient(`${restaurantCategoriesUrl}?restaurantId=${restaurantId}`);
     await deleteRestaurantCategoriesClient.execute();
   }
-
+  
+  // 辅助函数处理创建餐厅及相关联的数据
   async function createRestaurantAndRelations(data: Restaurant): Promise<Restaurant | void> {
     const createClient = new CreateClient<Restaurant>(url, data);
     const createdRestaurant = await createClient.execute();
@@ -136,7 +136,8 @@ abstract class HttpClient<T> {
             restaurantIds: updatedRestaurantIds
           });
           await updateCategoryClient.execute();
-
+  
+          // 创建新的restaurantCategory
           const createRestaurantCategoryClient = new CreateClient<RestaurantCategory>(restaurantCategoriesUrl, {
             restaurantId: createdRestaurant.id,
             categoryId: categoryId
@@ -148,6 +149,7 @@ abstract class HttpClient<T> {
     }
   }
   
+  // 辅助函数处理更新餐厅及相关联的数据
   async function updateRestaurantAndRelations(restaurantId: string, updatedData: Restaurant): Promise<Restaurant | void> {
     const getClient = new ReadClient<Restaurant>(`${url}/${restaurantId}`);
     const originalRestaurant = await getClient.execute();
@@ -165,6 +167,7 @@ abstract class HttpClient<T> {
       const addedIds = newCategoryIds.filter(id => !originalCategoryIds.includes(id));
       const removedIds = originalCategoryIds.filter(id => !newCategoryIds.includes(id));
   
+      // 处理新增的分类
       for (const categoryId of addedIds) {
         const getCategoryClient = new ReadClient<Category>(`${categoriesUrl}/${categoryId}`);
         const category = await getCategoryClient.execute();
@@ -175,6 +178,7 @@ abstract class HttpClient<T> {
           });
           await updateCategoryClient.execute();
   
+          // 创建新的restaurantCategory
           const createRestaurantCategoryClient = new CreateClient<RestaurantCategory>(restaurantCategoriesUrl, {
             restaurantId: restaurantId,
             categoryId: categoryId
@@ -182,7 +186,8 @@ abstract class HttpClient<T> {
           await createRestaurantCategoryClient.execute();
         }
       }
-
+  
+      // 处理移除的分类
       for (const categoryId of removedIds) {
         const getCategoryClient = new ReadClient<Category>(`${categoriesUrl}/${categoryId}`);
         const category = await getCategoryClient.execute();
@@ -193,6 +198,7 @@ abstract class HttpClient<T> {
           });
           await updateCategoryClient.execute();
   
+          // 删除对应的restaurantCategory
           const deleteRestaurantCategoryClient = new DeleteClient(`${restaurantCategoriesUrl}?restaurantId=${restaurantId}&categoryId=${categoryId}`);
           await deleteRestaurantCategoryClient.execute();
         }
@@ -201,49 +207,38 @@ abstract class HttpClient<T> {
   
     return updatedRestaurant;
   }
-
-
-// Exemple d'exécution : suppression, création, modification
-async function main() {
-  // suppression
-  await deleteRestaurantAndUpdateRelations('3aa8');
-  // création
-  await createRestaurantAndRelations({
-    name: "Le Restaurant de la Joie",
-    description: "Un restaurant où la joie est au menu",
-    categoryIds: ["71b2"],
-  });
-  // mise à jour
-  await updateRestaurantAndRelations('12b3', {
-    name: "Le Grill Super Marrant",
-  });
-}
-  </code></pre>
-
-  <button id="btn16">Run</button>
-  <div id="res16" class="result-box"></div>
-
-  <script type="module" is:inline>
-    import("/WebDev101/exercices/16_http_crud/app.js").then(({ main }) => {
-      const resBox = document.getElementById('res16');
-      document.getElementById("btn16")?.addEventListener("click", async () => {
-        resBox.textContent = "En cours d'exécution...";
-        const originalLog = console.log;
-        let logs = [];
-        console.log = (...args) => {
-          logs.push(args.join(" "));
-          originalLog(...args);
-        };
-
-        try {
-          await main();
-          resBox.innerHTML = logs.map(line => `📌 ${line}`).join("<br>");
-        } catch (e) {
-          resBox.innerHTML = "❌ Erreur : " + e.message;
-        } finally {
-          console.log = originalLog;
-        }
+  
+  // 示例调用
+  async function main() {
+    // 读取所有餐厅
+    const readClient = new ReadClient<Restaurant[]>(url);
+    const restaurants = await readClient.execute();
+    if (restaurants) {
+      restaurants.forEach((restaurant) => {
+        console.log(`READ id : ${restaurant.id} name : ${restaurant.name} `);
       });
-    });
-  </script>
-</section>
+    }
+  
+    // 删除餐厅 "Le Café Rigolo"
+    await deleteRestaurantAndUpdateRelations('3aa8');
+  
+    // 创建新餐厅
+    const newRestaurantData: Restaurant = {
+      name: "Le Restaurant de la Joie",
+      description: "Un restaurant où la joie est au menu",
+      categoryIds: ["71b2"],
+    };
+    await createRestaurantAndRelations(newRestaurantData);
+  
+    // 更新餐厅名称
+    const updatedRestaurantData: Restaurant = {
+      name: "Le Grill Super Marrant",
+    };
+    await updateRestaurantAndRelations('12b3', updatedRestaurantData);
+  }
+  
+  main();
+
+  export{main}
+  
+  

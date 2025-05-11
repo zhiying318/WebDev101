@@ -1,0 +1,63 @@
+<section id="11_generics" class="exercise-section">
+    <h2>11 Génériques</h2>
+  
+    <p>Implémentation d'une classe générique <code>Queue&lt;T&gt;</code> avec les méthodes <code>enqueue</code>, <code>dequeue</code> et <code>size</code>.</p>
+  
+    <pre><code class="language-ts" is:raw>
+  class Queue&lt;T&gt; {
+    private elements: T[] = [];
+  
+    enqueue(element: T): void {
+      this.elements.push(element);
+    }
+  
+    dequeue(): T | undefined {
+      return this.elements.shift();
+    }
+  
+    size(): number {
+      return this.elements.length;
+    }
+  }
+
+  // Testez votre code ici
+    let numberQueue = new Queue<number>();
+
+    console.log("start numberQueue test:");
+    console.log("origial size:", numberQueue.size()); 
+    numberQueue.enqueue(10);
+    numberQueue.enqueue(20);
+    numberQueue.enqueue(30);
+    console.log("size now:", numberQueue.size()); 
+    console.log("dequeue", numberQueue.dequeue()); 
+    console.log("size now:", numberQueue.size()); 
+    console.log("dequeue:", numberQueue.dequeue()); 
+    console.log("dequeue (from new empty Queue):", new Queue<number>().dequeue()); 
+
+    let stringQueue = new Queue<string>();
+
+    console.log("start stringQueue test:");
+    console.log("origial size:", stringQueue.size()); 
+    stringQueue.enqueue("a");
+    stringQueue.enqueue('b');
+    stringQueue.enqueue('c');
+    console.log("size now:", stringQueue.size()); 
+    console.log("dequeue", stringQueue.dequeue()); 
+    console.log("size now:", stringQueue.size()); 
+    console.log("dequeue:", stringQueue.dequeue()); 
+    console.log("dequeue (from new empty Queue):", new Queue<string>().dequeue());
+
+    </code></pre>
+  
+    <button id="btn11">Run</button>
+    <div id="res11"></div>
+  
+    <script type="module" is:inline>
+      import("/WebDev101/exercices/11_generics/app.js").then(({ runQueueTest }) => {
+        document.getElementById("btn11")?.addEventListener("click", () => {
+          runQueueTest("res11");
+        });
+      });
+    </script>
+  </section>
+  

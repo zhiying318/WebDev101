@@ -66,8 +66,8 @@ color: #48a5e7;
 }
 
 .sidebar a.active {
-font-weight: bold;
-background: #48a5e7;
+/* font-weight: bold; */
+background: #9acbee;
 color: white;
 }
 
@@ -86,3 +86,55 @@ scroll-margin-top: 60px;
 border-bottom: 1px solid #ddd;
 padding-bottom: 0.5rem;
 }
+
+code {
+    background-color: #f6f8fa;
+    color: #3cacdc;
+    padding: 0.05em 0.3em;
+    border-radius: 6px;
+    font-family: SFMono-Regular, Consolas, monospace;
+    font-size: 0.95em;
+  }
+  
+  pre {
+    background-color: #f6f8fa;
+    color: #24292e;
+    padding: 1em;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.95em;
+    line-height: 1.4;
+  }
+  
+  pre code {
+    background: none; 
+    color: inherit;
+    padding: 0;
+  }
+  
+  pre code {
+    display: block;
+    background: #f4f4f4;
+    padding: 0.1em;
+    overflow-x: auto;
+    border-radius: 8px;
+    font-size: 0.9em;
+    line-height: 0.1;
+  }
+  button {
+    margin-top: 10px;
+    padding: 6px 12px;
+  }
+  pre code.language-ts {
+    background-color: #f4f4f4;
+    padding: 1em;
+    display: block;
+    border-radius: 6px;
+    font-size: 0.9em;
+    line-height: 1.5;
+    white-space: pre-wrap;        
+    word-break: break-word;       
+    overflow-x: auto;             
+    max-width: 100%;              
+    box-sizing: border-box;
+  }

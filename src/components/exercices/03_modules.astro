@@ -1,0 +1,54 @@
+<section id="03_modules" class="exercise-section">
+    <h2>03 Modules</h2>
+    <p>Exercice sur les modules TypeScript avec gestion de conflits de nommage entre deux fonctions identiques.</p>
+  
+    <!-- ✅ 显示关键代码 -->
+    <pre><code class="language-ts" is:raw>
+  import { calculerJoursRestants as calculerVacances } from "./moduleVacances.ts";
+  import { calculerJoursRestants as calculerTravail } from "./moduleTravail.ts";
+  
+  const vacancesRestantes = calculerVacances();
+  const travailRestant = calculerTravail();
+  
+  const resultatVacances = document.createElement("div");
+  resultatVacances.textContent = \`la jours de vacances restant = \${vacancesRestantes}\`;
+  
+  const resultatTravail = document.createElement("div");
+  resultatTravail.textContent = \`la jours de travail restant = \${travailRestant}\`;
+  
+  document.body.appendChild(resultatVacances);
+  document.body.appendChild(resultatTravail);
+    </code></pre>
+
+    <pre><code class="language-ts" is:raw>
+// moduleTravail.ts
+// Hypothèse : Un employé a droit à 30 jours de vacances par an.
+export function calculerJoursRestants(): number {
+    const joursTravaille = 180; // par exemple, un employee a travaille 180 jours
+    return 250 - joursTravaille; // on suppose que un employee a 250 jours de travail par an
+}
+       </code></pre>
+
+    <pre><code class="language-ts" is:raw>
+// moduleVacances.ts
+// Hypothèse : Un employé a droit à 30 jours de vacances par an.
+
+export function calculerJoursRestants(): number {
+    const joursPris = 10; // par exemple, un employee a pris 10 jours de vacances
+    return 30 - joursPris; // on suppose que un employee a 30 jours de vacances par an
+}
+          </code></pre>
+  
+
+    <button id="btn03">Run</button>
+    <div id="output03" class="ts-output"></div>
+  
+    <script is:inline type="module">
+      import("/WebDev101/exercices/03_modules/calculJours.js").then(({ runCalcul }) => {
+        document.getElementById("btn03")?.addEventListener("click", () => {
+          runCalcul("output03");
+        });
+      });
+    </script>
+  </section>
+  

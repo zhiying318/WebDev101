@@ -1,0 +1,38 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<section id="02_hello_astro_typescript" class="exercise-section">
+  <h2>02 Hello Astro TypeScript</h2>
+  <p>Exercice : Créer une application Astro en TypeScript qui affiche dynamiquement "Bonjour, TypeScript!"</p>
+
+  <!-- ✅ 展示代码 -->
+  <pre><code class="language-ts" is:raw>
+const my_hello_message: string = "Bonjour TYPESCRIPT !";
+
+// Création d'un élément h1
+const my_title: HTMLHeadingElement = document.createElement("h1");
+my_title.textContent = my_hello_message;
+
+// Création d'une div avec id="app"
+const appDiv: HTMLDivElement = document.createElement("div");
+appDiv.id = "app";
+appDiv.appendChild(my_title);
+
+// Insertion dans le body
+document.body.appendChild(appDiv);
+  </code></pre>
+
+  <!-- ✅ 执行按钮和结果 -->
+  <button id="btn02">Run</button>
+
+  <div id="output02" class="ts-output"></div>
+
+  <script is:inline type="module">
+    import("/WebDev101/exercices/02_hello_astro_typescript/app.js").then(({ runHello }) => {
+      document.getElementById('btn02')?.addEventListener('click', () => {
+        runHello("output02");
+      });
+    });
+  </script>
+</section>

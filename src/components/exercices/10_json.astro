@@ -1,0 +1,72 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<section id="10_json" class="exercise-section">
+  <h2>10 json</h2>
+  <p>Exercice sur la (dé)sérialisation JSON avec classes et interfaces.</p>
+  
+  <!-- ✅ 展示 TypeScript 代码 -->
+  <pre><code class="language-ts" is:raw>
+    class User {
+      constructor(
+        public id: string,
+        public name: string,
+        public age: number,
+        public scores: number[]
+      ) {}
+    
+      getMaxScore(): number {
+        return Math.max(...this.scores);
+      }
+    
+      getAverageScore(): number {
+        if (this.scores.length === 0) return 0;
+        const sum = this.scores.reduce((a, b) => a + b, 0);
+        return sum / this.scores.length;
+      }
+    }
+    
+    const users = [
+      new User("1", "Alice", 25, [80, 90, 85]),
+      new User("2", "Bob", 30, [70, 75, 80, 65]),
+      new User("3", "Charlie", 22, [95, 85, 90]),
+    ];
+    
+    const serialized = JSON.stringify(users);
+    const plainObjects = JSON.parse(serialized);
+    
+    const revivedUsers = plainObjects.map(
+      (data: any) => new User(data.id, data.name, data.age, data.scores)
+    );
+    
+    const result = \`User: \${revivedUsers[1].name}, Max: \${revivedUsers[1].getMaxScore()}, Avg: \${revivedUsers[1].getAverageScore().toFixed(2)}\`;
+    </code></pre>
+
+  <div class="explanation">
+    <h4>Étapes expliquées :</h4>
+    <ol>
+      <li> Nous avons défini une interface <code>IUser</code> avec les propriétés <code>id</code>, <code>name</code>, <code>age</code> et un tableau <code>scores</code>. Deux méthodes <code>getMaxScore</code> et <code>getAverageScore</code> sont aussi définies.</li>
+      <li> La classe <code>User</code> implémente cette interface et fournit les méthodes nécessaires.</li>
+      <li> Trois instances de <code>User</code> ont été créées avec des données fictives.</li>
+      <li> Ces instances sont stockées dans un tableau de type <code>IUser[]</code>.</li>
+      <li> Une fonction <code>serializeUsers</code> utilise <code>JSON.stringify()</code> pour sérialiser le tableau <code>IUser[]</code> en une chaîne JSON.</li>
+      <li> La fonction <code>deserializeUsers</code> utilise <code>JSON.parse()</code> pour transformer la chaîne JSON en un tableau d'objets simples.</li>
+      <li> Après la désérialisation, on ne peut plus appeler <code>getMaxScore</code> ou <code>getAverageScore</code>, car les objets ne sont plus des instances de la classe <code>User</code>.</li>
+      <li> Pour retrouver les méthodes, nous avons reconstruit des instances <code>User</code> à partir des objets désérialisés.</li>
+      <li> Nous affichons alors le nom, le score max et le score moyen du 2ᵉ utilisateur restauré : c'est bien <strong>Bob</strong>.</li>
+    </ol>
+  </div>
+
+
+  <button id="btn10">Run</button>
+  <p><span id="res10"></span></p>
+
+  <script type="module">
+    import("/WebDev101/exercices/10_json/app.js").then(({ runJsonExercise }) => {
+      document.getElementById('btn10')?.addEventListener('click', () => {
+        runJsonExercise('res10');
+      });
+    });
+  </script>
+</section>

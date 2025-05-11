@@ -24,6 +24,25 @@ const sections = [
   { id: "17_forms", title: "17 forms" },
   { id: "18_web_components", title: "18 web components" },
 ];
+
+import Exo01 from '../components/exercices/01_hello_world_ts.astro';
+import Exo02 from '../components/exercices/02_hello_astro_typescript.astro';
+import Exo03 from '../components/exercices/03_modules.astro';
+import Exo04 from '../components/exercices/04_client_server.astro';
+import Exo05 from '../components/exercices/05_html_css_punto.astro';
+import Exo06 from '../components/exercices/06_css_flexbox.astro';
+import Exo07 from '../components/exercices/07_fat_arrow.astro';
+import Exo08 from '../components/exercices/08_map_reduce.astro';
+import Exo09 from '../components/exercices/09_objects.astro';
+import Exo10 from '../components/exercices/10_json.astro';
+import Exo11 from '../components/exercices/11_generics.astro';
+import Exo12 from '../components/exercices/12_exceptions.astro';
+import Exo13 from '../components/exercices/13_async_await.astro';
+import Exo14 from '../components/exercices/14_fetch.astro';
+import Exo15 from '../components/exercices/15_cors.astro';
+import Exo16 from '../components/exercices/16_http_crud.astro';
+import Exo17 from '../components/exercices/17_forms.astro';
+import Exo18 from '../components/exercices/18_web_components.astro';
 ---
 
 
@@ -41,14 +60,55 @@ const sections = [
     </aside>
 
     <main class="content">
-      {sections.map(section => (
-        <section id={section.id} class="exercise-section">
-          <h3>{section.title}</h3>
-          <p>这里是 {section.title} 的内容展示区。</p>
-        </section>
-      ))}
+      <Exo01 />
+      <Exo02 />
+      <Exo03 /> 
+      <Exo04 />
+      <Exo05 />
+      <Exo06 />
+      <Exo07 />
+      <Exo10 />
+      <!-- <Exo11 />
+      <Exo12 />
+      <Exo13 />
+      <Exo14 />
+      <Exo15 />
+      <Exo16 />
+      <Exo17 />
+      <Exo18 /> -->
+      
+      <!-- 继续插入组件 -->
     </main>
   </div>
+
+  <script is:inline> // highlight-line
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll("main section[id]");
+      const navLinks = document.querySelectorAll(".sidebar a");
+  
+      function activateSection() {
+        let currentId = "";
+  
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= sectionTop - 150) {
+            currentId = section.getAttribute("id");
+          }
+        });
+  
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${currentId}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+  
+      window.addEventListener("scroll", activateSection);
+      activateSection(); 
+    });
+  </script>
+  
 </BaseLayout>
 
 

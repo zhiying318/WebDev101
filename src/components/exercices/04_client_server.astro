@@ -1,0 +1,57 @@
+<section id="04_client_server" class="exercise-section">
+    <h2>04 Client ou Server Side</h2>
+    <p>Réflexion sur l'exécution du code selon son emplacement dans le projet Astro.</p>
+  
+    <article class="markdown-answer">
+      <h3></h3>
+  
+      <p>
+        Les messages <code>console.log</code> ajoutés dans les fonctions de
+        <code>moduleWeatherClientSide.ts</code> s'affichent dans la console du navigateur, car ces fonctions s'exécutent côté client. En revanche, ceux dans <code>moduleWeatherServerSide.ts</code> apparaissent dans le terminal du serveur Astro, car ils sont exécutés lors du rendu côté serveur.
+      </p>
+  
+      <h4>1. <strong>Code côté serveur (dans le dossier <code>src/pages</code>)</strong></h4>
+      <ul>
+        <li>
+          Les fichiers dans <code>src/pages</code> (comme <code>index.astro</code> et <code>moduleWeatherServerSide.ts</code>) sont exécutés sur le serveur au moment du rendu.
+        </li>
+        <li>
+          Les <code>console.log</code> de ces fonctions s'affichent donc dans le terminal serveur et non dans le navigateur.
+        </li>
+      </ul>
+  
+      <h4>2. <strong>Code côté client (dans le dossier <code>src/scripts</code>)</strong></h4>
+      <ul>
+        <li>
+          Les fichiers comme <code>app.ts</code> ou <code>moduleWeatherClientSide.ts</code> sont exécutés dans le navigateur une fois la page chargée.
+        </li>
+        <li>
+          Leurs <code>console.log</code> s'affichent dans la console DevTools du navigateur.
+        </li>
+      </ul>
+  
+      <blockquote>
+        En résumé, la séparation des dossiers permet de distinguer clairement le code côté serveur et côté client.
+      </blockquote>
+      <img src="../images/exercices/04_a.png" alt="Console serveur et navigateur" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;" />
+
+  
+      <h3></h3>
+  
+      <h4>1. <strong>Visibilité des requêtes côté client</strong></h4>
+      <p>
+        Les appels <code>fetch()</code> faits dans le navigateur sont visibles dans l'onglet Réseau des outils de développement, car le navigateur enregistre toutes les requêtes HTTP qu’il déclenche lui-même.
+      </p>
+  
+      <h4>2. <strong>Requêtes côté serveur invisibles</strong></h4>
+      <p>
+        Les requêtes faites sur le serveur (ex. dans le frontmatter d'un fichier Astro) ne passent pas par le navigateur, donc elles ne sont pas visibles dans l’onglet Réseau.
+      </p>
+  
+      <p>
+        Si on voit deux requêtes <code>fetch</code> dans l'onglet Réseau, cela signifie que les deux ont été lancées côté client.
+      </p>
+      <img src="../images/exercices/04_b.png" alt="Console serveur et navigateur" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;" />
+    </article>
+  </section>
+  

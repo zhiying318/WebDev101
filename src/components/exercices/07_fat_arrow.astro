@@ -1,0 +1,92 @@
+<section id="07_fat_arrow" class="exercise-section">
+    <h2>07 Fonctions Fléchées (Fat Arrow)</h2>
+    <p>Pour tester les exercices du session 07, ouvrir le console pour voir les résultats apres cliquer les buttons.</p>
+    <h3>Exercice 1 : Exécuter le fichier dans le navigateur</h3>
+    <p>Faire le fichier <code>app.ts</code> soit exécuté dans le navigateur (côté client).</p>
+    <p>
+      Ajouter une fonction fléchée, qui est utilisée comme <strong>callback</strong> dans <code>addEventListener</code> pour afficher les coordonnées de la souris dans la console à chaque clic.
+    </p>
+    <pre><code class="language-ts" is:raw>
+  document.addEventListener("click", (event: MouseEvent) => {
+    console.log(`x: ${event.clientX}, y: ${event.clientY}`);
+  });
+    </code></pre>
+    <button id="btn07-1">Run exo1</button>
+  
+    <h3>Exercice 2 : Calculatrice simple avec fonctions fléchées</h3>
+    <p>
+      Quatre fonctions fléchées sont définies pour effectuer des opérations, utilisées ensuite dans une fonction <code>calculatrice</code> avec un <code>switch</code>.
+    </p>
+    <pre><code class="language-ts" is:raw>
+  const additionner = (a: number, b: number): number => a + b;
+  const soustraire = (a: number, b: number): number => a - b;
+  const multiplier = (a: number, b: number): number => a * b;
+  const diviser = (a: number, b: number): number => a / b;
+  
+  // Fonction calculatrice avec une instruction pour déterminer l'opération
+const calculatrice = (a: number, b: number, operation: string): void => {
+    let resultat: number;
+
+    switch (operation) {
+        case "additionner":
+            resultat = additionner(a, b);
+            console.log(`La somme est: ${resultat}`);
+            break;
+        case "soustraire":
+            resultat = soustraire(a, b);
+            console.log(`La différence est: ${resultat}`);
+            break;
+        case "multiplier":
+            resultat = multiplier(a, b);
+            console.log(`Le produit est: ${resultat}`);
+            break;
+        case "diviser":
+            resultat = diviser(a, b);
+            console.log(`Le quotient est: ${resultat}`);
+            break;
+        default:
+            console.log("Opération non reconnue.");
+            break;
+    }
+};
+
+// Exemples d'utilisation
+calculatrice(5, 3, "additionner"); // Affiche "La somme est: 8"
+calculatrice(5, 3, "soustraire");  // Affiche "La différence est: 2"
+calculatrice(5, 3, "multiplier");  // Affiche "Le produit est: 15"
+calculatrice(5, 3, "diviser");     // Affiche "Le quotient est: 1.6666666666666667"
+    </code></pre>
+    <button id="btn07-2">Run exo2</button>
+  
+    <h3>Exercice 3 : Affichage continu des coordonnées</h3>
+    <p>
+      Un <code>setInterval</code> avec une fonction fléchée affiche les coordonnées de la souris toutes les secondes.
+    </p>
+    <pre><code class="language-ts" is:raw>
+  document.addEventListener("mousemove", (event: MouseEvent) => {
+    x = event.clientX; y = event.clientY;
+  });
+  setInterval(() => {
+    console.log(`x: ${x}, y: ${y}`);
+  }, 1000);
+    </code></pre>
+    <button id="btn07-3">Run exo3</button>
+  
+    <script type="module" is:inline>
+      // exercice 1
+      document.getElementById('btn07-1')?.addEventListener('click', () => {
+        import("/WebDev101/exercices/07_fat_arrow/app.js");
+      });
+  
+      // exercice 2
+      document.getElementById('btn07-2')?.addEventListener('click', () => {
+        import("/WebDev101/exercices/07_fat_arrow/calculatrice.js");
+      });
+  
+      // exercice 3
+      document.getElementById('btn07-3')?.addEventListener('click', () => {
+        import("/WebDev101/exercices/07_fat_arrow/mousemove.js");
+      });
+    </script>
+  </section>
+  

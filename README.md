@@ -15,16 +15,18 @@ L’ensemble du site est construit avec [Astro](https://astro.build), un framewo
 
 ---
 
-## 🤗 Quick start (Recommended)
+## 🚀 Accès en ligne (Recommended🤗)
 
-Ce site est deployed avez le serveur du Github, vous pouvez allez directement [ici](https://zhiying318.github.io/WebDev101/) pour visiter le site.
+Ce site est déjà **déployé en ligne** grâce à GitHub Pages. Vous pouvez y accéder directement via le lien suivant :
 
-https://zhiying318.github.io/WebDev101/
+🔗 **[Visiter le site WebDev101 du Zhiying Zou](https://zhiying318.github.io/WebDev101/)**
+
+*Aucune installation locale n’est nécessaire.*
 
 
 ---
 
-## 🛠️ Déploiement local (Local Setup)
+## 🛠️ Déploiement local (Optionnel)
 
 ### Étapes d'installation :
 

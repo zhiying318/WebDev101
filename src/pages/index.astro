@@ -1,14 +1,57 @@
 ---
-// 头部 Frontmatter：可导入组件或数据
+// Frontmatter
 import Layout from '../layouts/Layout.astro';
 const pageTitle = "WebDev101 - demo";
 ---
 
 <Layout title={pageTitle}>
-  <main>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .intro {
+      text-align: center;
+      margin: 8px auto;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+    font-family: sans-serif;
+    font-size: 2em; 
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 8px 0;
+  }
+
+    .intro a {
+    color: #007acc;
+    text-decoration: none;
+    }
+  
+    .intro a:hover {
+      text-decoration: underline;
+    }
+
+    .image-container {
+      text-align: center;
+    }
+
+    .image-container img {
+      max-width: 30%;
+      height: auto;
+    }
+  </style>
+
+  <section class="intro">
     <h1>WebDev101</h1>
-    <p>Site internet de démonstration pour le cours WebDev101 du Télécom Paris, 2025, crée par Zhiying Zou</p>
-    <!-- 插入图片 -->
-    <img src="/image.png" alt="演示图片" width="600" />
-  </main>
+    <p>
+      Site internet de démonstration pour le cours WebDev101 du Télécom Paris, 2025, crée par <strong>Zhiying Zou</strong>
+    </p>
+  </section>
+
+  <!-- 图片展示部分 -->
+  <section class="image-container">
+    <img src="./image.jpeg" alt="WebDev101 illustration" />
+  </section>
 </Layout>

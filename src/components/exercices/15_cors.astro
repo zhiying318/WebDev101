@@ -10,6 +10,34 @@ const trackData = await trackRes.json();
   <h2>15 CORS - Deezer Playlist</h2>
   <p>Affichage des morceaux de la playlist Top 100 France 2023 (depuis l'API de Deezer)</p>
 
+
+  <pre><code class="language-ts" is:raw>
+const container = document.createElement("ul");
+fetch("https://api.deezer.com/playlist/11846226041")
+  .then(res => res.json())
+  .then(async playlist => {
+    // track is a url
+    const trackRes = await fetch(playlist.tracklist);
+    const trackData = await trackRes.json();
+
+    trackData.data.forEach((track: any, index: number) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ...
+      `;
+      container.appendChild(li);
+    });
+
+
+document.body.appendChild(container);
+  })
+  .catch(error => {
+    console.error("Erreur lors de la récupération des données :", error);
+  });
+  </code></pre>
+
+  <details>
+    <summary>Afficher le playlist</summary>
   <ul>
     {trackData.data.map((track, index) => (
       <li>
@@ -24,4 +52,5 @@ const trackData = await trackRes.json();
       </li>
     ))}
   </ul>
+</details>
 </section>

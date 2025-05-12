@@ -43,6 +43,8 @@ https://zhiying318.github.io/WebDev101/
    ```
 Allez à [localhost](http://localhost:4321) pour tester le site.
 
+---
+
 ## 📁 Structure du projet 
 
   ```

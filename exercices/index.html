@@ -1,0 +1,1241 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Exercices - WebDev101</title><!-- import global.css --><link rel="stylesheet" href="file:///styles/global.css"><style>html{scroll-behavior:smooth}body{margin:0;padding:0;font-family:sans-serif}nav{position:fixed;top:0;left:0;width:100%;height:60px;background-color:#fff;z-index:1000;border-bottom:1px solid #eee}.exercise-layout{display:flex;min-height:100vh}.sidebar{width:250px;padding:1rem;border-right:1px solid #eee;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;background:#f9f9f9}.sidebar h2{font-size:1.2rem;margin-bottom:1rem}.sidebar ul{list-style:none;padding:0;margin:0}.sidebar li{margin-bottom:.5rem}.sidebar a{color:#2c3e50;text-decoration:none;padding:.3rem .6rem;display:block;border-radius:6px;transition:background .3s,color .3s}.sidebar a:hover{background:#0000000d;color:#48a5e7}.sidebar a.active{background:#9acbee;color:#fff}.content{flex:1;padding:2rem}.exercise-section{scroll-margin-top:60px}.exercise-section h3{border-bottom:1px solid #ddd;padding-bottom:.5rem}code{background-color:#f6f8fa;color:#3cacdc;padding:.05em .3em;border-radius:6px;font-family:SFMono-Regular,Consolas,monospace;font-size:.95em}pre{background-color:#f6f8fa;color:#24292e;padding:1em;border-radius:6px;overflow-x:auto;font-size:.95em;line-height:1.4}pre code{background:none;color:inherit;padding:0}pre code{display:block;background:#f4f4f4;padding:.1em;overflow-x:auto;border-radius:8px;font-size:.9em;line-height:.1}button{margin-top:10px;padding:6px 12px}pre code.language-ts{background-color:#f4f4f4;padding:1em;display:block;border-radius:6px;font-size:.9em;line-height:1.5;white-space:pre-wrap;word-break:break-word;overflow-x:auto;max-width:100%;box-sizing:border-box}
+nav[data-astro-cid-5knycien]{position:fixed;top:0;left:0;right:0;height:60px;background-color:#fff;z-index:1000;box-shadow:0 2px 4px #0000001a;display:flex;align-items:center}ul[data-astro-cid-5knycien]{display:flex;justify-content:space-around;align-items:center;list-style:none;margin:0;padding:0;height:100%;width:100%}a[data-astro-cid-5knycien]{text-decoration:none;color:#2c3e50;padding:.5rem 1rem;border-radius:8px;transition:all .3s ease;font-family:sans-serif}a[data-astro-cid-5knycien]:hover{color:#e4a150;background-color:#e4a1501a}li[data-astro-cid-5knycien]{flex:1;text-align:center}a[data-astro-cid-5knycien].active{color:#000;background-color:#f9dcb8;font-weight:700}#game-container[data-astro-cid-sckkx6r4]{position:relative;z-index:1;padding-top:60px}nav[data-astro-cid-sckkx6r4]{position:fixed;top:0;left:0;width:100%;z-index:1000}main[data-astro-cid-sckkx6r4]{padding-top:60px}
+</style></head> <body data-astro-cid-sckkx6r4> <nav data-astro-cid-5knycien> <ul data-astro-cid-5knycien> <li data-astro-cid-5knycien> <a href="/WebDev101/" class data-astro-cid-5knycien>
+Home
+</a> </li> <li data-astro-cid-5knycien> <a href="/WebDev101/exercices/" class="active" data-astro-cid-5knycien>
+Exercices WebDev101
+</a> </li> <li data-astro-cid-5knycien> <a href="/WebDev101/miniprojet/" class data-astro-cid-5knycien>
+Mini Projet - PUNTO
+</a> </li> <li data-astro-cid-5knycien> <a href="/WebDev101/projetfinal/" class data-astro-cid-5knycien>
+Projet final
+</a> </li> </ul> </nav>  <main data-astro-cid-sckkx6r4>  <div class="exercise-layout"> <aside class="sidebar"> <h2>Exercices</h2> <ul> <li> <a href="#01_hello_world_ts">01 hello world typescript</a> </li><li> <a href="#02_hello_astro_typescript">02 hello astro typescript</a> </li><li> <a href="#03_modules">03 modules</a> </li><li> <a href="#04_client_server">04 client or server side</a> </li><li> <a href="#05_html_css_punto">05 html css punto</a> </li><li> <a href="#06_css_flexbox">06 CSS flexbox</a> </li><li> <a href="#07_fat_arrow">07 fat arrow</a> </li><li> <a href="#08_map_reduce">08 map reduce filter</a> </li><li> <a href="#09_objects">09 objects</a> </li><li> <a href="#10_json">10 json</a> </li><li> <a href="#11_generics">11 generics</a> </li><li> <a href="#12_exceptions">12 exceptions</a> </li><li> <a href="#13_async_await">13 async await</a> </li><li> <a href="#14_fetch">14 fetch</a> </li><li> <a href="#15_cors">15 cors</a> </li><li> <a href="#16_http_crud">16 http CRUD</a> </li><li> <a href="#17_forms">17 forms</a> </li><li> <a href="#18_web_components">18 web components</a> </li> </ul> </aside> <main class="content"> <section id="01_hello_world_ts" class="exercise-section"> <h2>01 Hello World TypeScript</h2> <p>Exercice : Le typage dans TypeScript</p> <article class="markdown-answer"> <!-- <h3>Comparaison entre <code>hello.js</code> et <code>hello.ts</code></h3> --> <!-- <p>Le fichier <code>hello.ts</code> peut contenir du code typé TypeScript comme :</p> --> <!-- <pre><code class="language-ts" is:raw>
+  function greet(name: string): string {
+    return `Hello, ${name}!`;
+  }
+  console.log(greet("Alice"));
+    </code></pre>
+  
+    <p>Une fois transpilé, le fichier <code>hello.js</code> généré ressemblera à :</p>
+  
+    <pre><code class="language-js" is:raw>
+  function greet(name) {
+    return "Hello, " + name + "!";
+  }
+  console.log(greet("Alice"));
+    </code></pre> --> <h4>Déduction de l'étape de transpilation</h4> <p>La transpilation permet de convertir du code TypeScript en JavaScript standard, compatible avec tous les navigateurs. Toutes les annotations de types sont supprimées et seule la logique JavaScript reste.</p> <h4>Utilité du typage fort dans TypeScript</h4> <ul> <li> Détecter les erreurs à la compilation plutôt qu'à l'exécution</li> <li> Rendre le code plus lisible et auto-documenté</li> <li> Aider à l'autocomplétion et la navigation dans l'IDE</li> <li> Faciliter la maintenance et le refactoring à grande échelle</li> </ul> <p>Le typage fort dans TypeScript apporte donc plus de robustesse et de sécurité au développement, contrairement à JavaScript qui est faiblement typé et dynamique.</p> </article> </section> <section id="02_hello_astro_typescript" class="exercise-section"> <h2>02 Hello Astro TypeScript</h2> <p>Exercice : Créer une application Astro en TypeScript qui affiche dynamiquement "Bonjour, TypeScript!"</p> <!-- ✅ 展示代码 --> <pre><code class="language-ts">
+const my_hello_message: string = "Bonjour TYPESCRIPT !";
+
+// Création d'un élément h1
+const my_title: HTMLHeadingElement = document.createElement("h1");
+my_title.textContent = my_hello_message;
+
+// Création d'une div avec id="app"
+const appDiv: HTMLDivElement = document.createElement("div");
+appDiv.id = "app";
+appDiv.appendChild(my_title);
+
+// Insertion dans le body
+document.body.appendChild(appDiv);
+  </code></pre> <!-- ✅ 执行按钮和结果 --> <button id="btn02">Run</button> <div id="output02" class="ts-output"></div> <script type="module">
+    import("/WebDev101/exercices/02_hello_astro_typescript/app.js").then(({ runHello }) => {
+      document.getElementById('btn02')?.addEventListener('click', () => {
+        runHello("output02");
+      });
+    });
+  </script> </section> <section id="03_modules" class="exercise-section"> <h2>03 Modules</h2> <p>Exercice sur les modules TypeScript avec gestion de conflits de nommage entre deux fonctions identiques.</p> <!-- ✅ 显示关键代码 --> <pre><code class="language-ts">
+  import { calculerJoursRestants as calculerVacances } from "./moduleVacances.ts";
+  import { calculerJoursRestants as calculerTravail } from "./moduleTravail.ts";
+  
+  const vacancesRestantes = calculerVacances();
+  const travailRestant = calculerTravail();
+  
+  const resultatVacances = document.createElement("div");
+  resultatVacances.textContent = \`la jours de vacances restant = \${vacancesRestantes}\`;
+  
+  const resultatTravail = document.createElement("div");
+  resultatTravail.textContent = \`la jours de travail restant = \${travailRestant}\`;
+  
+  document.body.appendChild(resultatVacances);
+  document.body.appendChild(resultatTravail);
+    </code></pre> <pre><code class="language-ts">
+// moduleTravail.ts
+// Hypothèse : Un employé a droit à 30 jours de vacances par an.
+export function calculerJoursRestants(): number {
+    const joursTravaille = 180; // par exemple, un employee a travaille 180 jours
+    return 250 - joursTravaille; // on suppose que un employee a 250 jours de travail par an
+}
+       </code></pre> <pre><code class="language-ts">
+// moduleVacances.ts
+// Hypothèse : Un employé a droit à 30 jours de vacances par an.
+
+export function calculerJoursRestants(): number {
+    const joursPris = 10; // par exemple, un employee a pris 10 jours de vacances
+    return 30 - joursPris; // on suppose que un employee a 30 jours de vacances par an
+}
+          </code></pre> <button id="btn03">Run</button> <div id="output03" class="ts-output"></div> <script type="module">
+      import("/WebDev101/exercices/03_modules/calculJours.js").then(({ runCalcul }) => {
+        document.getElementById("btn03")?.addEventListener("click", () => {
+          runCalcul("output03");
+        });
+      });
+    </script> </section> <section id="04_client_server" class="exercise-section"> <h2>04 Client ou Server Side</h2> <p>Réflexion sur l'exécution du code selon son emplacement dans le projet Astro.</p> <article class="markdown-answer"> <h3></h3> <p>
+Les messages <code>console.log</code> ajoutés dans les fonctions de
+<code>moduleWeatherClientSide.ts</code> s'affichent dans la console du navigateur, car ces fonctions s'exécutent côté client. En revanche, ceux dans <code>moduleWeatherServerSide.ts</code> apparaissent dans le terminal du serveur Astro, car ils sont exécutés lors du rendu côté serveur.
+</p> <h4>1. <strong>Code côté serveur (dans le dossier <code>src/pages</code>)</strong></h4> <ul> <li>
+Les fichiers dans <code>src/pages</code> (comme <code>index.astro</code> et <code>moduleWeatherServerSide.ts</code>) sont exécutés sur le serveur au moment du rendu.
+</li> <li>
+Les <code>console.log</code> de ces fonctions s'affichent donc dans le terminal serveur et non dans le navigateur.
+</li> </ul> <h4>2. <strong>Code côté client (dans le dossier <code>src/scripts</code>)</strong></h4> <ul> <li>
+Les fichiers comme <code>app.ts</code> ou <code>moduleWeatherClientSide.ts</code> sont exécutés dans le navigateur une fois la page chargée.
+</li> <li>
+Leurs <code>console.log</code> s'affichent dans la console DevTools du navigateur.
+</li> </ul> <blockquote>
+En résumé, la séparation des dossiers permet de distinguer clairement le code côté serveur et côté client.
+</blockquote> <img src="../images/exercices/04_a.png" alt="Console serveur et navigateur" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;"> <h3></h3> <h4>1. <strong>Visibilité des requêtes côté client</strong></h4> <p>
+Les appels <code>fetch()</code> faits dans le navigateur sont visibles dans l'onglet Réseau des outils de développement, car le navigateur enregistre toutes les requêtes HTTP qu’il déclenche lui-même.
+</p> <h4>2. <strong>Requêtes côté serveur invisibles</strong></h4> <p>
+Les requêtes faites sur le serveur (ex. dans le frontmatter d'un fichier Astro) ne passent pas par le navigateur, donc elles ne sont pas visibles dans l’onglet Réseau.
+</p> <p>
+Si on voit deux requêtes <code>fetch</code> dans l'onglet Réseau, cela signifie que les deux ont été lancées côté client.
+</p> <img src="../images/exercices/04_b.png" alt="Console serveur et navigateur" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;"> </article> </section> <section id="05_html_css_punto" class="exercise-section"> <h2>05 HTML CSS Punto</h2> <p>Visiter la page <a href="/WebDev101/miniprojet/">Mini Projet - Punto</a> pour découvrir le jeu:)</p> </section> <section id="06_css_flexbox" class="exercise-section"> <h2>06 CSS Flexbox</h2> <p>Voici les 4 exercices réalisés à partir de la documentation MDN sur Flexbox :</p> <ul> <li><a href="https://developer.mozilla.org/fr/docs/Learn/CSS/CSS_layout/Flexbox_skills#disposition_flexible_1" target="_blank">Disposition flexible 1</a></li> <li><a href="https://developer.mozilla.org/fr/docs/Learn/CSS/CSS_layout/Flexbox_skills#disposition_flexible_2" target="_blank">Disposition flexible 2</a></li> <li><a href="https://developer.mozilla.org/fr/docs/Learn/CSS/CSS_layout/Flexbox_skills#disposition_flexible_3" target="_blank">Disposition flexible 3</a></li> <li><a href="https://developer.mozilla.org/fr/docs/Learn/CSS/CSS_layout/Flexbox_skills#disposition_flexible_4" target="_blank">Disposition flexible 4</a></li> </ul> <p>Je les ai réalisé les fonctionalités par moi-même. Vous pouvez également les ouvrir dans un nouvel onglet pour regarder les résultats:</p> <ul> <li><a href="/WebDev101/exercices/06_CSS_flexbox/1.html" target="_blank">Exercice 1</a></li> <li><a href="/WebDev101/exercices/06_CSS_flexbox/2.html" target="_blank">Exercice 2</a></li> <li><a href="/WebDev101/exercices/06_CSS_flexbox/3.html" target="_blank">Exercice 3</a></li> <li><a href="/WebDev101/exercices/06_CSS_flexbox/4.html" target="_blank">Exercice 4</a></li> </ul> </section> <section id="07_fat_arrow" class="exercise-section"> <h2>07 Fonctions Fléchées (Fat Arrow)</h2> <p>Pour tester les exercices du session 07, ouvrir le console pour voir les résultats apres cliquer les buttons.</p> <h3>Exercice 1 : Exécuter le fichier dans le navigateur</h3> <p>Faire le fichier <code>app.ts</code> soit exécuté dans le navigateur (côté client).</p> <p>
+Ajouter une fonction fléchée, qui est utilisée comme <strong>callback</strong> dans <code>addEventListener</code> pour afficher les coordonnées de la souris dans la console à chaque clic.
+</p> <pre><code class="language-ts">
+  document.addEventListener("click", (event: MouseEvent) => {
+    console.log(`x: ${event.clientX}, y: ${event.clientY}`);
+  });
+    </code></pre> <button id="btn07-1">Run exo1</button> <h3>Exercice 2 : Calculatrice simple avec fonctions fléchées</h3> <p>
+Quatre fonctions fléchées sont définies pour effectuer des opérations, utilisées ensuite dans une fonction <code>calculatrice</code> avec un <code>switch</code>.
+</p> <pre><code class="language-ts">
+  const additionner = (a: number, b: number): number => a + b;
+  const soustraire = (a: number, b: number): number => a - b;
+  const multiplier = (a: number, b: number): number => a * b;
+  const diviser = (a: number, b: number): number => a / b;
+  
+  // Fonction calculatrice avec une instruction pour déterminer l'opération
+const calculatrice = (a: number, b: number, operation: string): void => {
+    let resultat: number;
+
+    switch (operation) {
+        case "additionner":
+            resultat = additionner(a, b);
+            console.log(`La somme est: ${resultat}`);
+            break;
+        case "soustraire":
+            resultat = soustraire(a, b);
+            console.log(`La différence est: ${resultat}`);
+            break;
+        case "multiplier":
+            resultat = multiplier(a, b);
+            console.log(`Le produit est: ${resultat}`);
+            break;
+        case "diviser":
+            resultat = diviser(a, b);
+            console.log(`Le quotient est: ${resultat}`);
+            break;
+        default:
+            console.log("Opération non reconnue.");
+            break;
+    }
+};
+
+// Exemples d'utilisation
+calculatrice(5, 3, "additionner"); // Affiche "La somme est: 8"
+calculatrice(5, 3, "soustraire");  // Affiche "La différence est: 2"
+calculatrice(5, 3, "multiplier");  // Affiche "Le produit est: 15"
+calculatrice(5, 3, "diviser");     // Affiche "Le quotient est: 1.6666666666666667"
+    </code></pre> <button id="btn07-2">Run exo2</button> <h3>Exercice 3 : Affichage continu des coordonnées</h3> <p>
+Un <code>setInterval</code> avec une fonction fléchée affiche les coordonnées de la souris toutes les secondes.
+</p> <pre><code class="language-ts">
+  document.addEventListener("mousemove", (event: MouseEvent) => {
+    x = event.clientX; y = event.clientY;
+  });
+  setInterval(() => {
+    console.log(`x: ${x}, y: ${y}`);
+  }, 1000);
+    </code></pre> <button id="btn07-3">Run exo3</button> <script type="module">
+      // exercice 1
+      document.getElementById('btn07-1')?.addEventListener('click', () => {
+        import("/WebDev101/exercices/07_fat_arrow/app.js");
+      });
+  
+      // exercice 2
+      document.getElementById('btn07-2')?.addEventListener('click', () => {
+        import("/WebDev101/exercices/07_fat_arrow/calculatrice.js");
+      });
+  
+      // exercice 3
+      document.getElementById('btn07-3')?.addEventListener('click', () => {
+        import("/WebDev101/exercices/07_fat_arrow/mousemove.js");
+      });
+    </script> </section> <section id="08_map_reduce" class="exercise-section"> <h2>08 Map / Filter / Reduce / Find</h2> <p>Nous appliquons les méthodes <code>map</code>, <code>filter</code>, <code>reduce</code> et <code>find</code> à un tableau de fruits :</p> <pre><code class="language-ts">
+  const fruits = ["pomme", "kiwi", "banane", "cerise", "orange", "poire", "fraise", "prune", "ananas", "pêche"];
+  
+  const fruitsUpperCase = fruits.map(fruit => fruit.toUpperCase());
+  // ["POMME", "KIWI", "BANANE", ...]
+  
+  const fruitsStartingWithP = fruits.filter(fruit => fruit.startsWith('p'));
+  // ["pomme", "poire", "prune", "pêche"]
+  
+  const fruitsJoined = fruits.reduce((acc, fruit) => acc + (acc ? ', ' : '') + fruit, '');
+  // "pomme, kiwi, banane, ..."
+  
+  const firstFruitWithMoreThanFiveLetters = fruits.find(fruit => fruit.length > 5);
+  // "banane"
+    </code></pre> <button id="btn08">Run</button> <div id="res08"></div> <script type="module">
+      import("/WebDev101/exercices/08_map_reduce/app.js").then(mod => {
+        document.getElementById("btn08")?.addEventListener("click", () => {
+          const el = document.getElementById("res08");
+          if (!el) return;
+  
+          const { fruitsUpperCase, fruitsStartingWithP, fruitsJoined, firstFruitWithMoreThanFiveLetters } = mod;
+  
+          el.innerHTML = `
+            <p><strong>Fruits en majuscules :</strong> ${fruitsUpperCase.join(', ')}</p>
+            <p><strong>Fruits commençant par 'p' :</strong> ${fruitsStartingWithP.join(', ')}</p>
+            <p><strong>Chaîne concaténée :</strong> ${fruitsJoined}</p>
+            <p><strong>Premier fruit &gt; 5 lettres :</strong> ${firstFruitWithMoreThanFiveLetters}</p>
+          `;
+        });
+      });
+    </script> </section> <section id="09_objects" class="exercise-section"> <h2>09 Classes et Interfaces - Véhicules</h2> <p>
+Une interface <code>IVehicle</code> définit deux méthodes. Une classe abstraite <code>Vehicle</code> fournit
+      une implémentation de <code>drive()</code>. Les classes <code>Car</code> et <code>Bicycle</code> définissent leur propre
+      méthode <code>honk()</code>. Le programme crée plusieurs instances et les parcourt.
+</p> <pre><code class="language-ts">
+  // Ici j'ai mis tout les messages apparaîts dans console affichés dessous le button
+
+  interface IVehicle {
+    drive(): void;
+    honk(): void;
+  }
+  
+  abstract class Vehicle implements IVehicle {
+    constructor(protected speed: number) {}
+    abstract honk(): void;
+    drive(): void {
+      console.log(\`Driving at \${this.speed} km/h\`);
+    }
+  }
+  
+  class Car extends Vehicle {
+    honk(): void {
+      console.log("Beep beep!");
+    }
+  }
+  
+  class Bicycle extends Vehicle {
+    honk(): void {
+      console.log("Ring Ring");
+    }
+  }
+
+  const vehicles: IVehicle[] = [
+    new Car(120),
+    new Car(150),
+    new Bicycle(20),
+    new Bicycle(25),
+    new Bicycle(30)
+ ];
+
+  for (const vehicle of vehicles) {
+    vehicle.drive();
+    vehicle.honk();
+  }
+    </code></pre> <button id="btn09">Run</button> <div id="res09" class="result-box"></div> <script type="module">
+      import("/WebDev101/exercices/09_objects/app.js").then(({ runVehicleExercise }) => {
+        document.getElementById("btn09")?.addEventListener("click", () => {
+          runVehicleExercise("res09");
+        });
+      });
+    </script> </section> <section id="10_json" class="exercise-section"> <h2>10 json</h2> <p>Exercice sur la (dé)sérialisation JSON avec classes et interfaces.</p> <!-- ✅ 展示 TypeScript 代码 --> <pre><code class="language-ts">
+    class User {
+      constructor(
+        public id: string,
+        public name: string,
+        public age: number,
+        public scores: number[]
+      ) {}
+    
+      getMaxScore(): number {
+        return Math.max(...this.scores);
+      }
+    
+      getAverageScore(): number {
+        if (this.scores.length === 0) return 0;
+        const sum = this.scores.reduce((a, b) => a + b, 0);
+        return sum / this.scores.length;
+      }
+    }
+    
+    const users = [
+      new User("1", "Alice", 25, [80, 90, 85]),
+      new User("2", "Bob", 30, [70, 75, 80, 65]),
+      new User("3", "Charlie", 22, [95, 85, 90]),
+    ];
+    
+    const serialized = JSON.stringify(users);
+    const plainObjects = JSON.parse(serialized);
+    
+    const revivedUsers = plainObjects.map(
+      (data: any) => new User(data.id, data.name, data.age, data.scores)
+    );
+    
+    const result = \`User: \${revivedUsers[1].name}, Max: \${revivedUsers[1].getMaxScore()}, Avg: \${revivedUsers[1].getAverageScore().toFixed(2)}\`;
+    </code></pre> <div class="explanation"> <h4>Étapes expliquées :</h4> <ol> <li> Nous avons défini une interface <code>IUser</code> avec les propriétés <code>id</code>, <code>name</code>, <code>age</code> et un tableau <code>scores</code>. Deux méthodes <code>getMaxScore</code> et <code>getAverageScore</code> sont aussi définies.</li> <li> La classe <code>User</code> implémente cette interface et fournit les méthodes nécessaires.</li> <li> Trois instances de <code>User</code> ont été créées avec des données fictives.</li> <li> Ces instances sont stockées dans un tableau de type <code>IUser[]</code>.</li> <li> Une fonction <code>serializeUsers</code> utilise <code>JSON.stringify()</code> pour sérialiser le tableau <code>IUser[]</code> en une chaîne JSON.</li> <li> La fonction <code>deserializeUsers</code> utilise <code>JSON.parse()</code> pour transformer la chaîne JSON en un tableau d'objets simples.</li> <li> Après la désérialisation, on ne peut plus appeler <code>getMaxScore</code> ou <code>getAverageScore</code>, car les objets ne sont plus des instances de la classe <code>User</code>.</li> <li> Pour retrouver les méthodes, nous avons reconstruit des instances <code>User</code> à partir des objets désérialisés.</li> <li> Nous affichons alors le nom, le score max et le score moyen du 2ᵉ utilisateur restauré : c'est bien <strong>Bob</strong>.</li> </ol> </div> <button id="btn10">Run</button> <p><span id="res10"></span></p> <script type="module">
+    import("/WebDev101/exercices/10_json/app.js").then(({ runJsonExercise }) => {
+      document.getElementById('btn10')?.addEventListener('click', () => {
+        runJsonExercise('res10');
+      });
+    });
+  </script> </section> <section id="11_generics" class="exercise-section"> <h2>11 Génériques</h2> <p>Implémentation d'une classe générique <code>Queue&lt;T&gt;</code> avec les méthodes <code>enqueue</code>, <code>dequeue</code> et <code>size</code>.</p> <pre><code class="language-ts">
+  class Queue&lt;T&gt; {
+    private elements: T[] = [];
+  
+    enqueue(element: T): void {
+      this.elements.push(element);
+    }
+  
+    dequeue(): T | undefined {
+      return this.elements.shift();
+    }
+  
+    size(): number {
+      return this.elements.length;
+    }
+  }
+
+  // Testez votre code ici
+    let numberQueue = new Queue<number>();
+
+    console.log("start numberQueue test:");
+    console.log("origial size:", numberQueue.size()); 
+    numberQueue.enqueue(10);
+    numberQueue.enqueue(20);
+    numberQueue.enqueue(30);
+    console.log("size now:", numberQueue.size()); 
+    console.log("dequeue", numberQueue.dequeue()); 
+    console.log("size now:", numberQueue.size()); 
+    console.log("dequeue:", numberQueue.dequeue()); 
+    console.log("dequeue (from new empty Queue):", new Queue<number>().dequeue()); 
+
+    let stringQueue = new Queue<string>();
+
+    console.log("start stringQueue test:");
+    console.log("origial size:", stringQueue.size()); 
+    stringQueue.enqueue("a");
+    stringQueue.enqueue('b');
+    stringQueue.enqueue('c');
+    console.log("size now:", stringQueue.size()); 
+    console.log("dequeue", stringQueue.dequeue()); 
+    console.log("size now:", stringQueue.size()); 
+    console.log("dequeue:", stringQueue.dequeue()); 
+    console.log("dequeue (from new empty Queue):", new Queue<string>().dequeue());
+
+    </code></pre> <button id="btn11">Run</button> <div id="res11"></div> <script type="module">
+      import("/WebDev101/exercices/11_generics/app.js").then(({ runQueueTest }) => {
+        document.getElementById("btn11")?.addEventListener("click", () => {
+          runQueueTest("res11");
+        });
+      });
+    </script> </section> <section id="12_exceptions" class="exercise-section"> <h2>12 Exceptions - Gestion d'erreurs</h2> <p>Une classe <code>Rectangle</code> vérifie les dimensions avant de calculer la surface. Les erreurs sont capturées via un bloc <code>try-catch-finally</code>.</p> <pre><code class="language-ts">
+  class Rectangle {
+    constructor(private longueur: number, private largeur: number) {}
+  
+    calculerSurface(): number {
+      if (this.longueur <= 0 || this.largeur <= 0) {
+        throw new Error("Dimensions invalides !");
+      }
+      return this.longueur * this.largeur;
+    }
+  
+    essayerCalculSurface(): void {
+      try {
+        const surface = this.calculerSurface();
+        console.log(surface);
+      } catch (e) {
+        console.error(e.message);
+      } finally {
+        console.log("Calcul terminé");
+      }
+    }
+  }
+
+  // test
+  const rectangles = [
+      new Rectangle(5, 10),   
+      new Rectangle(0, 8),     
+      new Rectangle(4, -3),    
+      new Rectangle(7, 12)     
+  ];
+  
+  console.log("=== Test des rectangles ===");
+  rectangles.forEach(rect => rect.essayerCalculSurface());
+    </code></pre> <button id="btn12">Run</button> <div id="res12"></div> <script type="module">
+      import("/WebDev101/exercices/12_exceptions/app.js").then(({ runRectangleTest }) => {
+        document.getElementById("btn12")?.addEventListener("click", () => {
+          runRectangleTest("res12");
+        });
+      });
+    </script> </section> <section id="13_async_await" class="exercise-section"> <h2>13 async/await et Promises</h2> <p>Trois exercices sur les Promesses et la syntaxe async/await :</p> <ul> <li><strong>Q1</strong> : somme de deux nombres avec délai.</li> <li><strong>Q2</strong> : vérification d'un utilisateur avec then/catch.</li> <li><strong>Q3</strong> : version orientée objet avec des classes.</li> </ul> <pre><code class="language-ts">
+// Question 1
+function calculateSumAsync(a: number, b: number): Promise<number> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(a + b);
+        }, 3000);
+    });
+}
+
+async function printSum(a: number, b: number): Promise<void> {
+    console.log("Calcul en cours...");
+    const sum = await calculateSumAsync(a, b);
+    console.log(`Résultat: ${sum}`);
+}
+
+console.log("=== Test Question 1 ===");
+printSum(5, 7);
+
+
+
+
+// Question 2
+function verifyUser(username: string, password: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+        const validUsername = "admin";
+        const validPassword = "1234";
+        
+        if (username === validUsername && password === validPassword) {
+            resolve();
+        } else {
+            reject("Nom d'utilisateur ou mot de passe incorrect");
+        }
+    });
+}
+
+// 2. use then/catch
+console.log("=== Test Question 2 ===");
+verifyUser("admin", "1234")
+    .then(() => console.log("Bienvenue, admin!"))
+    .catch(err => console.error("Erreur:", err));
+
+verifyUser("user", "psjciwqw")
+    .then(() => console.log("Bienvenue!"))
+    .catch(err => console.error("Erreur:", err)); 
+
+
+
+
+// Question 3 - Q1 (Version with Class)
+class Calculator {
+    async calculateSumAsync(a: number, b: number): Promise<number> {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(a + b);
+            }, 3000);
+        });
+    }
+
+    async printSum(a: number, b: number): Promise<void> {
+        console.log("Calcul en cours...");
+        const sum = await this.calculateSumAsync(a, b);
+        console.log(`Résultat: ${sum}`);
+    }
+}
+
+// TEST
+console.log("=== Test Question 3 - Q1 ===");
+const calc = new Calculator();
+calc.printSum(10, 15); 
+
+
+// Question 3 - Q2 (Version with Class)
+class Users {
+    private validUsername = "admin";
+    private validPassword = "1234";
+
+    verifyUser(username: string, password: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            if (username === this.validUsername && password === this.validPassword) {
+                resolve();
+            } else {
+                reject("Nom d'utilisateur ou mot de passe incorrect");
+            }
+        });
+    }
+
+    login(username: string, password: string): void {
+        this.verifyUser(username, password)
+            .then(() => console.log(`Bienvenue, ${username}!`))
+            .catch(err => console.error("Erreur:", err));
+    }
+}
+
+// TEST
+console.log("=== Test Question 3 - Q2 ===");
+const userSystem = new Users();
+userSystem.login("admin", "1234"); 
+userSystem.login("guest", "030dwqxsa"); 
+
+    </code></pre> <button id="btnQ1">Run Question 1</button> <button id="btnQ2">Run Question 2</button> <button id="btnQ3">Run Question 3</button> <div id="res13"></div> <script type="module">
+      import("/WebDev101/exercices/13_async_await/app.js").then(({ runQ1, runQ2, runQ3 }) => {
+        document.getElementById("btnQ1")?.addEventListener("click", () => {
+          document.getElementById("res13").innerHTML = "";
+          runQ1("res13");
+        });
+  
+        document.getElementById("btnQ2")?.addEventListener("click", () => {
+          document.getElementById("res13").innerHTML = "";
+          runQ2("res13");
+        });
+  
+        document.getElementById("btnQ3")?.addEventListener("click", () => {
+          document.getElementById("res13").innerHTML = "";
+          runQ3("res13");
+        });
+      });
+    </script> </section> <section id="14_fetch" class="exercise-section"> <h2>14 fetch</h2> <h3>Exercice 1</h3> <p>Ce script utilise l'API de l'USGS pour afficher les tremblements de terre de magnitude ≥ 4 depuis hier.</p> <pre><code class="language-ts">  
+interface Earthquake {
+properties: {
+    time: number;
+    place: string;
+    mag: number;
+};
+}
+
+class EarthquakeService {
+private async getEarthquakesFromUSGS(): Promise<Earthquake[]> {
+    const response = await fetch(
+    "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=yesterday&endtime=today&minmagnitude=4"
+    );
+    const earthquakejson = await response.json();
+    return earthquakejson.features;
+}
+
+async displayEarthquakes() {
+    try {
+    const earthquakes = await this.getEarthquakesFromUSGS();
+
+    // ======= add line 1 =======
+    const ul: HTMLUListElement = document.createElement("ul");
+    
+
+    earthquakes.forEach((earthquake) => {
+        const date: Date = new Date(earthquake.properties.time);
+        const options: Intl.DateTimeFormatOptions = {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Europe/Paris",
+        };
+        const dateString: string = date.toLocaleDateString("fr-FR", options);
+        const finalString: string = `${dateString} - ${earthquake.properties.mag} - ${earthquake.properties.place}`;
+        console.log(finalString);
+
+        // ======= add line 2-4 =======
+        const li: HTMLLIElement = document.createElement("li");
+        li.textContent = finalString;
+        ul.appendChild(li);
+        
+    });
+
+    // ======= add line 5 =======
+    // document.body.appendChild(ul);
+    document.getElementById("ex1")?.appendChild(ul);
+    
+
+    } catch (error) {
+    console.error('Une erreur est survenue lors de la récupération des données de tremblement de terre :', error);
+    }
+}
+}
+
+const earthquakeService = new EarthquakeService();
+earthquakeService.displayEarthquakes();    
+    </code></pre> <h3>Exercice 2 : Recherche d'adresse en France</h3> <p>Recherche des adresses via l'API adresse.data.gouv.fr (exemple : <code>8 bd du port</code>)</p> <pre><code class="language-ts"> 
+// app2.ts
+
+interface Address {
+    city: string;
+    postcode: string;
+    street: string;
+    housenumber: string;
+    context: string;
+    lat: number;
+    lon: number;
+    }
+    
+    class AddressService {
+    async searchAddress(query: string, limit: number): Promise<Address[]> {
+        const encodedQuery = encodeURIComponent(query);
+        const url = `https://api-adresse.data.gouv.fr/search/?q=${encodedQuery}&limit=${limit}`;
+    
+        try {
+        const response = await fetch(url);
+        const data = await response.json();
+    
+        const addresses: Address[] = data.features.map((feature: any) => {
+            const props = feature.properties;
+            return {
+            city: props.city,
+            postcode: props.postcode,
+            street: props.street || '', 
+            housenumber: props.housenumber || '',
+            context: props.context,
+            lat: feature.geometry.coordinates[1],
+            lon: feature.geometry.coordinates[0],
+            };
+        });
+    
+        return addresses;
+        } catch (error) {
+        console.error("Erreur lors de la recherche d'adresse :", error);
+        return [];
+        }
+    }
+    }
+    
+
+    
+    const addressService = new AddressService();
+    
+    addressService.searchAddress("8 bd du port", 5).then((results) => {
+    const ul = document.createElement("ul");
+    
+    results.forEach((address) => {
+        const li = document.createElement("li");
+        li.textContent = `${address.city}, ${address.postcode}, ${address.street} ${address.housenumber} (${address.context}) [${address.lat}, ${address.lon}]`;
+        ul.appendChild(li);
+    });
+    
+    document.getElementById("ex2")?.appendChild(ul);
+    });
+    </code></pre> <button id="btn14_2">Run</button> <div id="ex2"></div> <script type="module">
+  
+      import("/WebDev101/exercices/14_fetch/app.js").then(({ addressService }) => {
+        document.getElementById("btn14_2")?.addEventListener("click", () => {
+          document.getElementById("ex2").innerHTML = "";
+          addressService.searchAddress("8 bd du port", 5).then((results) => {
+            const ul = document.createElement("ul");
+            results.forEach((address) => {
+              const li = document.createElement("li");
+              li.textContent = `${address.city}, ${address.postcode}, ${address.street} ${address.housenumber} (${address.context}) [${address.lat}, ${address.lon}]`;
+              ul.appendChild(li);
+            });
+            document.getElementById("ex2")?.appendChild(ul);
+          });
+        });
+      });
+    </script> </section> <section id="15_cors" class="exercise-section"> <h2>15 CORS - Deezer Playlist</h2> <p>Affichage des morceaux de la playlist Top 100 France 2023 (depuis l'API de Deezer)</p> <pre><code class="language-ts">
+const container = document.createElement("ul");
+fetch("https://api.deezer.com/playlist/11846226041")
+  .then(res => res.json())
+  .then(async playlist => {
+    // track is a url
+    const trackRes = await fetch(playlist.tracklist);
+    const trackData = await trackRes.json();
+
+    trackData.data.forEach((track: any, index: number) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ...
+      `;
+      container.appendChild(li);
+    });
+
+
+document.body.appendChild(container);
+  })
+  .catch(error => {
+    console.error("Erreur lors de la récupération des données :", error);
+  });
+  </code></pre> <details> <summary>Afficher le playlist</summary> <ul> <li> <h3>1. Flowers</h3> <p>Miley Cyrus</p> <p>Flowers</p> <img src="https://cdn-images.dzcdn.net/images/cover/98610629a40996b61b3d24bd5ab8c2e1/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/c/a/1/0/ca19f3388408a917038cb083873c4ae1.mp3?hdnea=exp=1747049156~acl=/api/1/1/c/a/1/0/ca19f3388408a917038cb083873c4ae1.mp3*~data=user_id=0,application_id=42~hmac=6f817a24c4e11e76c72044111ce3320ee696420ea1d9041db1a2c3fe33f7388a" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>2. Bolide allemand</h3> <p>SDM</p> <p>Liens du 100</p> <img src="https://cdn-images.dzcdn.net/images/cover/82e46172fe6ace4c287cde4a8f1c8392/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/b/f/c/0/bfc508998f5e7eb28489bbe435a6453d.mp3?hdnea=exp=1747049156~acl=/api/1/1/b/f/c/0/bfc508998f5e7eb28489bbe435a6453d.mp3*~data=user_id=0,application_id=42~hmac=4fbe5d1f703739a73b0fc1e97e8367ec036ec8ce60189dc12f33fb232f086fd3" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>3. Jolie (feat. Ninho)</h3> <p>GAULOIS</p> <p>Jolie (feat. Ninho)</p> <img src="https://cdn-images.dzcdn.net/images/cover/a9c2c1c474f4ab9ee67459f99f504e70/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/e/e/8/0/ee82ff3d6a00c48c59b83816bb50650f.mp3?hdnea=exp=1747049156~acl=/api/1/1/e/e/8/0/ee82ff3d6a00c48c59b83816bb50650f.mp3*~data=user_id=0,application_id=42~hmac=23076900265363652543bc1eacbf85ed9fc2042e22837f855483909ed08f1350" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>4. Meuda</h3> <p>Tiakola</p> <p>Mélo</p> <img src="https://cdn-images.dzcdn.net/images/cover/1428de52b8c0427a770e6e8a61e9c1f3/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/b/f/9/0/bf92fbff7cfb9298e21286ac486dc3b5.mp3?hdnea=exp=1747049156~acl=/api/1/1/b/f/9/0/bf92fbff7cfb9298e21286ac486dc3b5.mp3*~data=user_id=0,application_id=42~hmac=d8400cced2be5e6fc6624baf0bc4f03c7d3f2957023aa1c538b53786a2b85206" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>5. Another Love</h3> <p>Tom Odell</p> <p>Long Way Down (Deluxe)</p> <img src="https://cdn-images.dzcdn.net/images/cover/23d34526dc6ef2073bb854fc91a25112/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/4/b/3/0/4b393b254e857c451c8eda85832d1fa9.mp3?hdnea=exp=1747049156~acl=/api/1/1/4/b/3/0/4b393b254e857c451c8eda85832d1fa9.mp3*~data=user_id=0,application_id=42~hmac=c6b256c517d70a0cce538d160ca0beda7a2607107929feeae793b9614364bf5c" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>6. Secret</h3> <p>Louane</p> <p>Secret</p> <img src="https://cdn-images.dzcdn.net/images/cover/3544f4f79cf555b17afaed45e42d1e4e/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/9/a/3/0/9a35eb1832ec4f662772408d966e789a.mp3?hdnea=exp=1747049156~acl=/api/1/1/9/a/3/0/9a35eb1832ec4f662772408d966e789a.mp3*~data=user_id=0,application_id=42~hmac=e65cb63137be1299428eed8e1b5f9b40d8bf6332c87f715f08286db2e3e5d17d" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>7. Saiyan</h3> <p>Heuss L&#39;enfoiré</p> <p>Saiyan</p> <img src="https://cdn-images.dzcdn.net/images/cover/a0219d0efb30f93fd64dc70f950d1300/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/8/2/d/0/82d2c86dd62f355cad4ad062cca1c34c.mp3?hdnea=exp=1747049156~acl=/api/1/1/8/2/d/0/82d2c86dd62f355cad4ad062cca1c34c.mp3*~data=user_id=0,application_id=42~hmac=41dddef0fac5e4ff9d2c624a1044d1fc32aae399eb49d3ce9ba5fe5425425290" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>8. Nocif</h3> <p>Hamza</p> <p>Sincèrement</p> <img src="https://cdn-images.dzcdn.net/images/cover/2a429207ef802151317eee49a23a8bd8/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/0/3/d/0/03d63ce66815cdf52ba3c00c3f375a8f.mp3?hdnea=exp=1747049156~acl=/api/1/1/0/3/d/0/03d63ce66815cdf52ba3c00c3f375a8f.mp3*~data=user_id=0,application_id=42~hmac=9a57c85003bf6e4b9b80bf81b64b4ad63e16f9b0e7f47952a6a0be6d29f8e201" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>9. Rush</h3> <p>Ayra Starr</p> <p>Rush</p> <img src="https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/9/7/6/0/9765a7adde5778d2e1bc8b037c36386c.mp3?hdnea=exp=1747049156~acl=/api/1/1/9/7/6/0/9765a7adde5778d2e1bc8b037c36386c.mp3*~data=user_id=0,application_id=42~hmac=4a5c9b349c0680dff56dfe143cca303676381a128564d4c662a7b5bd82d7f8b4" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>10. Tiki Taka</h3> <p>Vacra</p> <p>Tiki Taka</p> <img src="https://cdn-images.dzcdn.net/images/cover/e58bd1acfae310849ac2a63751640954/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/d/4/a/0/d4adcfa21c7d70ee34adeff837076a2e.mp3?hdnea=exp=1747049156~acl=/api/1/1/d/4/a/0/d4adcfa21c7d70ee34adeff837076a2e.mp3*~data=user_id=0,application_id=42~hmac=a4e92f69fcfae6d319d048e50e0468a3ddc93da86aaf49bf29d52c4019de44c2" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>11. DIE</h3> <p>Gazo</p> <p>KMT</p> <img src="https://cdn-images.dzcdn.net/images/cover/7d4e409a12fd290a253ab4320b53964b/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/2/9/1/0/291ea3e8ae2418004ca6b1ae659e231d.mp3?hdnea=exp=1747049156~acl=/api/1/1/2/9/1/0/291ea3e8ae2418004ca6b1ae659e231d.mp3*~data=user_id=0,application_id=42~hmac=11734923b3c9c999e042cb7bf40a368dc189a4df44069086e85e2338cdfe7c96" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>12. Mr. Ocho</h3> <p>SDM</p> <p>Liens du 100</p> <img src="https://cdn-images.dzcdn.net/images/cover/82e46172fe6ace4c287cde4a8f1c8392/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/6/5/9/0/6594613f5389fa4e547ac17547efb687.mp3?hdnea=exp=1747049156~acl=/api/1/1/6/5/9/0/6594613f5389fa4e547ac17547efb687.mp3*~data=user_id=0,application_id=42~hmac=e6e654a20f4df61e734d54121eace5ae7e8aa894ece9584020856bb59bc0920f" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>13. Casanova</h3> <p>Soolking</p> <p>Casanova</p> <img src="https://cdn-images.dzcdn.net/images/cover/1e5e094f83b30af22336998863538268/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/d/0/c/0/d0c235b2b1c5cf6ef400d7eeaf32dfe3.mp3?hdnea=exp=1747049156~acl=/api/1/1/d/0/c/0/d0c235b2b1c5cf6ef400d7eeaf32dfe3.mp3*~data=user_id=0,application_id=42~hmac=c5a6c1a0cb56297ce5352ae7ac552e08b298f3e437de61cfdbc9f4e0f3e2440b" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>14. THE LONELIEST</h3> <p>Måneskin</p> <p>THE LONELIEST</p> <img src="https://cdn-images.dzcdn.net/images/cover/27cebd2c90dd760f85f698ea8e2e3275/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/b/3/9/0/b390eb4552df3c1f6cf8a24f03bf7d9c.mp3?hdnea=exp=1747049156~acl=/api/1/1/b/3/9/0/b390eb4552df3c1f6cf8a24f03bf7d9c.mp3*~data=user_id=0,application_id=42~hmac=fc4d49205b38791fc5dec9b07a5bc455721d619ea402ba17a2bb161fb1e5db52" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>15. Decrescendo</h3> <p>Lomepal</p> <p>Mauvais Ordre</p> <img src="https://cdn-images.dzcdn.net/images/cover/9e8e8d980daf3a27959953f686ebf348/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/3/0/8/0/308ef2f88fa73a3f6f90eaa4d62c470a.mp3?hdnea=exp=1747049156~acl=/api/1/1/3/0/8/0/308ef2f88fa73a3f6f90eaa4d62c470a.mp3*~data=user_id=0,application_id=42~hmac=1307c417657dc9274b53645e28639f5feaaf34327e1e74073c4a8521933d06e9" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>16. Calm Down</h3> <p>Rema</p> <p>Calm Down</p> <img src="https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/3/4/9/0/34902942bf39f4d4c794af249ecf9124.mp3?hdnea=exp=1747049156~acl=/api/1/1/3/4/9/0/34902942bf39f4d4c794af249ecf9124.mp3*~data=user_id=0,application_id=42~hmac=f7e0d1cd04769386e525282e2f3fb4c2d7cbf977f7dcd5ace3633017dbf80833" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>17. Baby</h3> <p>Aya Nakamura</p> <p>Baby</p> <img src="https://cdn-images.dzcdn.net/images/cover/a5ad052309476efe0c7127aa83071bea/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/a/0/5/0/a05113b6c329d883016053d919b6fec3.mp3?hdnea=exp=1747049156~acl=/api/1/1/a/0/5/0/a05113b6c329d883016053d919b6fec3.mp3*~data=user_id=0,application_id=42~hmac=5b0e091657be3f769afe832cb77cf0a9ee93e88f3eaf911385a48515b81a3000" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>18. AMBER</h3> <p>Zola</p> <p>AMBER</p> <img src="https://cdn-images.dzcdn.net/images/cover/d3a602683b98e2d9408c33bb483d2b40/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/b/b/9/0/bb98e2e5e65fcd1cbeec7a3777daf27c.mp3?hdnea=exp=1747049156~acl=/api/1/1/b/b/9/0/bb98e2e5e65fcd1cbeec7a3777daf27c.mp3*~data=user_id=0,application_id=42~hmac=50be336f3d829ccc4eea34fc2d4243bf412fd85166155a529fe4b70b7cce8c28" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>19. DESPECHÁ</h3> <p>ROSALÍA</p> <p>DESPECHÁ</p> <img src="https://cdn-images.dzcdn.net/images/cover/b805ed7967bdc65386883cc3790459e7/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/b/2/3/0/b234d28fb77426a7e59c38f0ad7d7956.mp3?hdnea=exp=1747049156~acl=/api/1/1/b/2/3/0/b234d28fb77426a7e59c38f0ad7d7956.mp3*~data=user_id=0,application_id=42~hmac=e3cd2075c82264bb86d46f9ae511325c55bfd066b512a4b53287b003c02dcdaa" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>20. I&#39;m Good (Blue)</h3> <p>David Guetta</p> <p>I&#39;m Good (Blue)</p> <img src="https://cdn-images.dzcdn.net/images/cover/88ce18db5ef5ec9d895b849228d70445/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/0/b/c/0/0bc3b3dce7e62bec0454a8d8a025a828.mp3?hdnea=exp=1747049156~acl=/api/1/1/0/b/c/0/0bc3b3dce7e62bec0454a8d8a025a828.mp3*~data=user_id=0,application_id=42~hmac=c31168246ee469aa2c99c1f51e56f60777ae409e9c14c7b9e0895f0fea0ae771" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>21. As It Was</h3> <p>Harry Styles</p> <p>As It Was</p> <img src="https://cdn-images.dzcdn.net/images/cover/b0e936124f59e669ddba02ebe5893f95/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/9/3/7/0/9372c78844baf74b7a06bd467151518a.mp3?hdnea=exp=1747049156~acl=/api/1/1/9/3/7/0/9372c78844baf74b7a06bd467151518a.mp3*~data=user_id=0,application_id=42~hmac=353bcd35ac0998581c833b5534b72adfd85dbac29711e04ee946739055ba15a1" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>22. FLEURS (feat. Tiakola)</h3> <p>Gazo</p> <p>KMT</p> <img src="https://cdn-images.dzcdn.net/images/cover/7d4e409a12fd290a253ab4320b53964b/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/8/6/c/0/86cfb6795d34920afbdbe7c8d8adbc9a.mp3?hdnea=exp=1747049156~acl=/api/1/1/8/6/c/0/86cfb6795d34920afbdbe7c8d8adbc9a.mp3*~data=user_id=0,application_id=42~hmac=e2d18df44ebd3ec4c5d7e7dbfe04eb2cd2745418999fb56a0785c0d4f35c57eb" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>23. C&#39;est carré le S</h3> <p>naps</p> <p>En temps réel</p> <img src="https://cdn-images.dzcdn.net/images/cover/b7b84694589f0192ee6f1f24e7421f00/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>24. Creepin&#39;</h3> <p>Metro Boomin</p> <p>HEROES &amp; VILLAINS</p> <img src="https://cdn-images.dzcdn.net/images/cover/862ab860ff69c30deeb5979db6e46b62/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src="https://cdnt-preview.dzcdn.net/api/1/1/8/f/d/0/8fd42faed3ced0c5f4eee3249077f9c4.mp3?hdnea=exp=1747049156~acl=/api/1/1/8/f/d/0/8fd42faed3ced0c5f4eee3249077f9c4.mp3*~data=user_id=0,application_id=42~hmac=1425bed1c6b467f3cd50c534db66efd3c0f99e75d0d497719f897af1338cf2a7" type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li><li> <h3>25. Petit génie</h3> <p>Jungeli</p> <p>Petit génie</p> <img src="https://cdn-images.dzcdn.net/images/cover/77642f5205a64bea833cb159fc362ff9/56x56-000000-80-0-0.jpg" alt="cover"> <audio controls preload="none"> <source src type="audio/mpeg">
+Votre navigateur ne supporte pas l'audio.
+</audio> </li> </ul> </details> </section> <section id="16_http_crud" class="exercise-section"> <h2>16 - HTTP CRUD avec relations entre entités</h2> <p>Ce script gère la suppression, création, mise à jour de restaurants et la mise à jour des catégories et relations associées.</p> <details> <summary>Afficher le code</summary> <pre><code class="language-ts">
+interface AlloResto {
+  restaurants: Restaurant[];
+  categories: Category[];
+  restaurantCategories: RestaurantCategory[];
+}
+
+interface Category {
+  id?: string;
+  name?: string;
+  restaurantIds?: string[];
+}
+
+interface RestaurantCategory {
+  restaurantId?: string;
+  categoryId?: string;
+}
+
+interface Restaurant {
+  id?: string;
+  name?: string;
+  description?: string;
+  categoryIds?: string[];
+}
+
+abstract class HttpClient<T> {
+    protected url: string;
+    protected options: RequestInit;
+  
+    constructor(url: string) {
+      this.url = url;
+      this.options = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+    }
+  
+    public async execute(): Promise<T | void> {
+      try {
+        const response = await fetch(this.url, this.options);
+        if (response.ok) {
+        const data: T = await response.json(); //extraction du corps de la réponse au format JSON
+        return data;
+        }
+      } catch (error) {
+        console.error("There was a problem with the fetch operation: ", error);
+      }
+    }
+  }
+
+
+  class CreateClient<T> extends HttpClient<T> {
+    constructor(url: string, data: T) {
+      super(url);
+      this.options.method = "POST";
+      this.options.body = JSON.stringify(data);
+    }
+  }
+  
+  class ReadClient<T> extends HttpClient<T> {
+    constructor(url: string) {
+      super(url);
+      this.options.method = "GET";
+    }
+  }
+  
+  class UpdateClient<T> extends HttpClient<T> {
+    constructor(url: string, data: T) {
+      super(url);
+      this.options.method = "PATCH";
+      this.options.body = JSON.stringify(data);
+    }
+  }
+  
+  class DeleteClient<T> extends HttpClient<T> {
+    constructor(url: string) {
+      super(url);
+      this.options.method = "DELETE";
+    }
+  }
+  const url = "http://localhost:3000/restaurants";
+  const categoriesUrl = "http://localhost:3000/categories";
+  const restaurantCategoriesUrl = "http://localhost:3000/restaurantCategories";
+
+  async function deleteRestaurantAndUpdateRelations(restaurantId: string): Promise<void> {
+    const getClient = new ReadClient<Restaurant>(`${url}/${restaurantId}`);
+    const restaurant = await getClient.execute();
+    if (!restaurant) return;
+  
+    const deleteClient = new DeleteClient<Restaurant>(`${url}/${restaurantId}`);
+    const deletedRestaurant = await deleteClient.execute();
+    if (!deletedRestaurant) return;
+  
+    console.log(`DELETE id : ${deletedRestaurant.id} name : ${deletedRestaurant.name} `);
+
+    const categoryIds = restaurant.categoryIds || [];
+    for (const categoryId of categoryIds) {
+      const getCategoryClient = new ReadClient<Category>(`${categoriesUrl}/${categoryId}`);
+      const category = await getCategoryClient.execute();
+      if (category) {
+        const updatedRestaurantIds = category.restaurantIds?.filter(id => id !== restaurantId) || [];
+        const updateCategoryClient = new UpdateClient<Category>(`${categoriesUrl}/${categoryId}`, {
+          restaurantIds: updatedRestaurantIds
+        });
+        await updateCategoryClient.execute();
+      }
+    }
+  
+    const deleteRestaurantCategoriesClient = new DeleteClient(`${restaurantCategoriesUrl}?restaurantId=${restaurantId}`);
+    await deleteRestaurantCategoriesClient.execute();
+  }
+
+  async function createRestaurantAndRelations(data: Restaurant): Promise<Restaurant | void> {
+    const createClient = new CreateClient<Restaurant>(url, data);
+    const createdRestaurant = await createClient.execute();
+    if (createdRestaurant && createdRestaurant.id) {
+      console.log(`CREATE id : ${createdRestaurant.id} name : ${createdRestaurant.name} `);
+  
+      const categoryIds = data.categoryIds || [];
+      for (const categoryId of categoryIds) {
+        const getCategoryClient = new ReadClient<Category>(`${categoriesUrl}/${categoryId}`);
+        const category = await getCategoryClient.execute();
+        if (category) {
+          const updatedRestaurantIds = [...(category.restaurantIds || []), createdRestaurant.id];
+          const updateCategoryClient = new UpdateClient<Category>(`${categoriesUrl}/${categoryId}`, {
+            restaurantIds: updatedRestaurantIds
+          });
+          await updateCategoryClient.execute();
+
+          const createRestaurantCategoryClient = new CreateClient<RestaurantCategory>(restaurantCategoriesUrl, {
+            restaurantId: createdRestaurant.id,
+            categoryId: categoryId
+          });
+          await createRestaurantCategoryClient.execute();
+        }
+      }
+      return createdRestaurant;
+    }
+  }
+  
+  async function updateRestaurantAndRelations(restaurantId: string, updatedData: Restaurant): Promise<Restaurant | void> {
+    const getClient = new ReadClient<Restaurant>(`${url}/${restaurantId}`);
+    const originalRestaurant = await getClient.execute();
+    if (!originalRestaurant) return;
+  
+    const updateClient = new UpdateClient<Restaurant>(`${url}/${restaurantId}`, updatedData);
+    const updatedRestaurant = await updateClient.execute();
+    if (!updatedRestaurant) return;
+  
+    console.log(`UPDATE id : ${updatedRestaurant.id} name : ${updatedRestaurant.name} `);
+  
+    if (updatedData.categoryIds !== undefined) {
+      const originalCategoryIds = originalRestaurant.categoryIds || [];
+      const newCategoryIds = updatedData.categoryIds || [];
+      const addedIds = newCategoryIds.filter(id => !originalCategoryIds.includes(id));
+      const removedIds = originalCategoryIds.filter(id => !newCategoryIds.includes(id));
+  
+      for (const categoryId of addedIds) {
+        const getCategoryClient = new ReadClient<Category>(`${categoriesUrl}/${categoryId}`);
+        const category = await getCategoryClient.execute();
+        if (category) {
+          const updatedRestaurantIds = [...(category.restaurantIds || []), restaurantId];
+          const updateCategoryClient = new UpdateClient<Category>(`${categoriesUrl}/${categoryId}`, {
+            restaurantIds: updatedRestaurantIds
+          });
+          await updateCategoryClient.execute();
+  
+          const createRestaurantCategoryClient = new CreateClient<RestaurantCategory>(restaurantCategoriesUrl, {
+            restaurantId: restaurantId,
+            categoryId: categoryId
+          });
+          await createRestaurantCategoryClient.execute();
+        }
+      }
+
+      for (const categoryId of removedIds) {
+        const getCategoryClient = new ReadClient<Category>(`${categoriesUrl}/${categoryId}`);
+        const category = await getCategoryClient.execute();
+        if (category) {
+          const updatedRestaurantIds = category.restaurantIds?.filter(id => id !== restaurantId) || [];
+          const updateCategoryClient = new UpdateClient<Category>(`${categoriesUrl}/${categoryId}`, {
+            restaurantIds: updatedRestaurantIds
+          });
+          await updateCategoryClient.execute();
+  
+          const deleteRestaurantCategoryClient = new DeleteClient(`${restaurantCategoriesUrl}?restaurantId=${restaurantId}&categoryId=${categoryId}`);
+          await deleteRestaurantCategoryClient.execute();
+        }
+      }
+    }
+  
+    return updatedRestaurant;
+  }
+
+
+// Exemple d'exécution : suppression, création, modification
+async function main() {
+  // suppression
+  await deleteRestaurantAndUpdateRelations('3aa8');
+  // création
+  await createRestaurantAndRelations({
+    name: "Le Restaurant de la Joie",
+    description: "Un restaurant où la joie est au menu",
+    categoryIds: ["71b2"],
+  });
+  // mise à jour
+  await updateRestaurantAndRelations('12b3', {
+    name: "Le Grill Super Marrant",
+  });
+}
+  </code></pre> </details> <!-- <button id="btn16">Run</button> --> <div id="res16" class="result-box"></div> <!-- <script type="module" is:inline>
+    import("/WebDev101/exercices/16_http_crud/app.js").then(({ main }) => {
+      const resBox = document.getElementById('res16');
+      document.getElementById("btn16")?.addEventListener("click", async () => {
+        resBox.textContent = "En cours d'exécution...";
+        const originalLog = console.log;
+        let logs = [];
+        console.log = (...args) => {
+          logs.push(args.join(" "));
+          originalLog(...args);
+        };
+
+        try {
+          await main();
+          resBox.innerHTML = logs.map(line => `📌 ${line}`).join("<br>");
+        } catch (e) {
+          resBox.innerHTML = "❌ Erreur : " + e.message;
+        } finally {
+          console.log = originalLog;
+        }
+      });
+    });
+  </script> --> </section> <section id="17_forms"> <h2>17. Forms + API OpenAQ</h2> <p>
+Cet exercice vous montre comment interagir avec l'API <a href="https://openaq.org" target="_blank">OpenAQ</a> via un formulaire. <br>
+Étant donné que l'API OpenAQ ne permet pas les requêtes directes côté navigateur (CORS), l'application utilise un <strong>serveur proxy</strong> déployé sur Vercel.
+</p> <ul> <li>L'utilisateur entre un pays (ex: FR, US, CN…)</li> <li>On récupère les <em>locations</em> disponibles via <code>/api/locations</code></li> <li>On sélectionne un site de mesure → les mesures s'affichent</li> <li>Données rafraîchies toutes les 10 secondes automatiquement</li> <li>Si le pays n'est pas trouvé → message d'erreur</li> </ul> <details> <summary>Afficher le code</summary> <pre><code class="language-ts">
+        import { serve } from "bun";
+
+        const OPENAQ_API_KEY = "YOUR_API_KEY"; // 替换为你的API密钥
+        const PORT = 3000;
+        async function fetchOpenAQData(endpoint: string, params: Record<string, string>) {
+            const url = new URL(`https://api.openaq.org/v3/${endpoint}`);
+            Object.entries(params).forEach(([key, value]) => 
+                url.searchParams.append(key, value));
+            
+            const response = await fetch(url, {
+                headers: {
+                    "X-API-Key": OPENAQ_API_KEY,
+                }
+            });
+        
+            if (!response.ok) throw new Error(await response.text());
+            return response.json();
+        }
+
+        serve({
+            port: PORT,
+            async fetch(req) {
+                const url = new URL(req.url);
+                
+                // 返回前端页面
+                if (url.pathname === "/") {
+                    return new Response(HTML, {
+                        headers: { "Content-Type": "text/html" }
+                    });
+                }
+
+                if (url.pathname === "/locations") {
+                    try {
+                        const country = url.searchParams.get("country");
+                        const data = await fetchOpenAQData("locations", {
+                            country,
+                            limit: "100"
+                        });
+                        
+                        if (data.results.length === 0) {
+                            return new Response("Country not found", { status: 404 });
+                        }
+                        
+                        return Response.json(data.results.map(location => ({
+                            id: location.id,
+                            name: location.name
+                        })));
+                    } catch (error) {
+                        return new Response(error.message, { status: 500 });
+                    }
+                }
+
+                if (url.pathname === "/measurements") {
+                    try {
+                        const locationId = url.searchParams.get("locationId");
+                        const data = await fetchOpenAQData("measurements", {
+                            location_id: locationId,
+                            limit: "10",
+                            sort: "desc"
+                        });
+                        
+                        return Response.json(data.results);
+                    } catch (error) {
+                        return new Response(error.message, { status: 500 });
+                    }
+                }
+        
+                return new Response("Not found", { status: 404 });
+            }
+        });
+        
+        console.log(`Server running at http://localhost:${PORT}`);
+    </code></pre> </details> <button id="launch-app" style="margin-top: 1rem;">Run</button> <div id="app-container" style="margin-top: 20px;"></div> <script>
+    document.getElementById("launch-app").addEventListener("click", () => {
+      const container = document.getElementById("app-container");
+      container.innerHTML = ""; // Reset
+
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://openaq-vercel.vercel.app";
+      iframe.width = "100%";
+      iframe.height = "700";
+      iframe.style.border = "1px solid #ccc";
+      iframe.style.borderRadius = "8px";
+      iframe.style.boxShadow = "0 0 10px rgba(0,0,0,0.1)";
+      container.appendChild(iframe);
+    });
+  </script> </section> <section id="18_web_components"> <h2>18. Web Components personnalisés</h2> <p>
+Cet exercice montre comment créer des <strong>éléments HTML personnalisés</strong> en utilisant l’API Web Components.
+      Deux éléments ont été définis :
+</p> <ul> <li><code>&lt;date-time&gt;</code> : affiche la date et l’heure actuelles, mise à jour chaque seconde</li> <li> <code>&lt;greet-custom&gt;</code> : affiche une salutation contextuelle (Bonjour, Bon après-midi, Bonsoir)
+        selon l’heure de la journée. Il accepte un attribut <code>name</code> pour personnaliser le message.
+</li> </ul> <details> <summary>Afficher le code de <code>&lt;greet-custom&gt;</code></summary> <pre><code class="language-ts">
+class HelloWorld extends HTMLElement {
+    // le navigateur appelle cette méthode à chaque fois que l'élément est ajouté
+    // au DOM (c'est à dire inséré dans la page)
+    // vous pouvez aussi appeler cette méthode manuellement
+    // pour mettre à jour l'élément
+    connectedCallback() {
+        this.textContent = "Hello World!";
+    }
+    }
+    
+    // ici on enregistre notre élément <hello-world> dans le navigateur
+    // pour qu'il soit reconnu et utilisable dans le HTML
+    // le nom de la balise est le premier paramètre
+    // le deuxième paramètre est la classe qui définit le comportement de l'élément
+    customElements.define("hello-world", HelloWorld);
+    
+    class HelloName extends HTMLElement {
+    name: string = "Remi";
+    constructor() {
+        super();
+    }
+    
+    // le navigateur appelle cette méthode pour savoir
+    // quels attributs observer (c'est à dire surveiller les changements de valeur)
+    // et pour ensuite appeler attributeChangedCallback
+    static get observedAttributes(): string[] {
+        return ["name"];
+    }
+    
+    // le navigateur appelle cette méthode à chaque fois qu'un attribut
+    // observé change de valeur (voir observedAttributes)
+    // puis il appelle connectedCallback pour mettre à jour l'élément
+    attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+        if (name === "name") {
+        console.log(`Attribute ${name} changed from ${oldValue} to ${newValue}`);
+        this.name = newValue;
+        }
+    }
+    
+    // cette méthode est appelée à chaque fois que l'attribut name change
+    // (voir ci-dessus)
+    connectedCallback() {
+        console.log(`Hello ${this.name}!`);
+        this.textContent = `Hello ${this.name}!`;
+    }
+    }
+    
+    customElements.define("hello-name", HelloName);
+    
+    //ajouter un élément <hello-name> programmatiquement
+    const helloName : HelloName = document.createElement("hello-name") as HelloName;
+    helloName.setAttribute("name", "Monsieur DEBUT");
+    document.body.appendChild(helloName);
+
+            
+// ==================== date and time ====================
+class DateTime extends HTMLElement {
+    private timerId?: number;
+
+    connectedCallback() {
+    this.updateTime();
+
+    this.timerId = setInterval(() => this.updateTime(), 1000);
+    }
+
+    disconnectedCallback() {
+    if (this.timerId) {
+        clearInterval(this.timerId);
+    }
+    }
+
+    private updateTime() {
+    this.textContent = new Date().toLocaleString();
+    }
+}
+
+customElements.define('date-time', DateTime);
+
+// ==================== Active Greeting ====================
+class GreetCustom extends HTMLElement {
+
+    static get observedAttributes() {
+    return ['name'];
+    }
+
+    private name: string = '';
+
+    attributeChangedCallback(name: string, oldVal: string, newVal: string) {
+    if (name === 'name') {
+        this.name = newVal;
+        this.updateGreeting();
+    }
+    }
+
+    connectedCallback() {
+    this.updateGreeting();
+    }
+
+    private updateGreeting() {
+    const hour = new Date().getHours();
+    let greeting = 'Bonsoir'; // default bonsoir
+
+    if (hour >= 5 && hour < 12) {
+        greeting = 'Bonjour';
+    } else if (hour >= 12 && hour < 18) {
+        greeting = 'Bon après-midi';
+    }
+
+    this.innerHTML = `
+        <div >
+        ${greeting}${this.name ? `, ${this.name}` : ''}!
+        </div>
+    `;
+    }
+}
+
+customElements.define('greet-custom', GreetCustom);
+
+window.onload = () => {
+    const style = document.createElement('style');
+    style.textContent = `
+    hello-world, hello-name, date-time, greet-custom {
+        display: block;
+        margin-bottom: 15px;
+    }
+    `;
+    document.head.appendChild(style);
+
+    const thirdHelloName: HelloName = document.getElementById("third") as HelloName;
+    if (thirdHelloName) {
+    thirdHelloName.setAttribute("name", "John");
+    thirdHelloName.connectedCallback();
+    } else {
+    console.error("Element not found");
+    }
+
+    const container = document.createElement('div');
+
+    const components = [
+    document.createElement('date-time'),
+    helloName, // 原有的helloName
+    document.createElement('greet-custom')
+    ];
+
+    components[2].setAttribute('name', '');
+
+    components.forEach(el => {
+    container.appendChild(el);
+    container.appendChild(document.createElement('br'));
+    });
+
+    document.body.appendChild(container);
+};
+      </code></pre> </details> <button id="btnRun18">Run</button> <div id="res18"></div> <script type="module">
+    import("/WebDev101/exercices/18_web_components/app.js").then(({ runSession18 }) => {
+      document.getElementById("btnRun18")?.addEventListener("click", () => {
+        runSession18("res18");
+      });
+    });
+  </script> </section> </main> </div> <script> // highlight-line
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll("main section[id]");
+      const navLinks = document.querySelectorAll(".sidebar a");
+  
+      function activateSection() {
+        let currentId = "";
+  
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= sectionTop - 150) {
+            currentId = section.getAttribute("id");
+          }
+        });
+  
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${currentId}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+  
+      window.addEventListener("scroll", activateSection);
+      activateSection(); 
+    });
+  </script>  <!-- insert page content --> </main>  <!-- <!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style> --></body></html> <!-- <BaseLayout title={pageTitle}>
+  <h1>Exercices - WebDev101</h1>
+  <p>exxxxxxxererrrrrrrrccccccc</p>
+</BaseLayout> -->
